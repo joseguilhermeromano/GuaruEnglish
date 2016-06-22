@@ -15,7 +15,7 @@ import javax.persistence.Table;
 /**
  *
  * @author Luiz Felipe
- */
+ *///turma 
 @Entity
 @Table(name = "turma")
 public class Turma {
