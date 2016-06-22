@@ -21,4 +21,5 @@ public class JPAutil {
         return entityManagerFactory.createEntityManager();
     }
     
+    
 }
