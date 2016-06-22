@@ -21,6 +21,7 @@ import javax.persistence.Temporal;
 /**
  *
  * @author Luiz Felipe
+ * fodase
  */
 @Entity
 @Table(name = "contrato")

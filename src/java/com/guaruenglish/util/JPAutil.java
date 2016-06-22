@@ -13,12 +13,13 @@ import javax.persistence.Persistence;
  *
  * @author Luiz Felipe
  */
-public class JPAultil {
+public class JPAutil {
     private static EntityManagerFactory entityManagerFactory = 
             Persistence.createEntityManagerFactory("guaruenglish");
     
     public EntityManager getEntityManager() {
         return entityManagerFactory.createEntityManager();
     }
+    
     
 }
