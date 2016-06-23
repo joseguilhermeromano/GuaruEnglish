@@ -8,6 +8,8 @@ package com.guaruenglish.model;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,6 +27,8 @@ public class Parcela {
     private int numParcela;
     private String mesParcela;
     
+    @ManyToOne
+    @JoinColumn(name = "id_contrato", referencedColumnName = "id")
     private Contrato contrato;
     
     public Parcela() {

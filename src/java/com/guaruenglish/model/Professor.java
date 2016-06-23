@@ -28,6 +28,8 @@ public class Professor extends Usuario {
     
     @OneToMany(mappedBy = "professor")
     private List<Turma> turmas;
+    
+    @OneToMany(mappedBy = "professor")
     private List<PlantaoDuvida> plantoes;
     
     
