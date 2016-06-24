@@ -5,6 +5,7 @@
  */
 package com.guaruenglish.servlet;
 
+import com.guaruenglish.dao.UsuarioDAO;
 import com.guaruenglish.model.Usuario;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,16 +30,19 @@ public class RedefinirSenha implements Tarefa {
         String senha = req.getParameter("senha");
         String senhaConfirmada = req.getParameter("confirmar");
         
-        if(senha.equals(senhaConfirmada)) {
-            Usuario usuario = (Usuario)req.getSession().getAttribute("usuarioLoado");
-            usuario.setSenha(senha);
-            usuario.setStatusSenha(1);
-            PAGINA_PERFIL.get(usuario.getPerfilAcesso());
+        if(!senha.equals(senhaConfirmada)) {            
+            req.setAttribute("error", "As senhas não correspondem");
+            return "WEB-INF/Paginas/redefinirSenha.jsp";
         }
         
-        req.setAttribute("error", "As senhas não correspondem");
-        return "WEB-INF/Paginas/redefinirSenha.jsp";
+        Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioLogado");
+        usuario.setSenha(senha);
+        usuario.setStatusSenha(1);
         
+        //ainda falta atualizar a data de expiração da senha.
+        
+        new UsuarioDAO().alteraUsuario(usuario);
+        return PAGINA_PERFIL.get(usuario.getPerfilAcesso());
     }
     
 }
