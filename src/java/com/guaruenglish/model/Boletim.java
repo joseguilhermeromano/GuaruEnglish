@@ -28,7 +28,7 @@ public class Boletim {
     private float conceitoFinal;
     
     @ManyToOne
-    @JoinColumn(name = "id_aluno", referencedColumnName = "id")
+    @JoinColumn(name = "id_aluno", referencedColumnName = "id_aluno")
     private Aluno aluno;
     
     @ManyToOne
