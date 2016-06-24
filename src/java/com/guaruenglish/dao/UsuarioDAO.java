@@ -8,6 +8,7 @@ package com.guaruenglish.dao;
 import com.guaruenglish.model.Usuario;
 import com.guaruenglish.util.JPAutil;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -19,11 +20,15 @@ public class UsuarioDAO {
     EntityManager enitityManager = new JPAutil().getEntityManager();
     
     public Usuario buscaUsuario(String userName) {
+        try {
+            Query query = enitityManager.createQuery
+                ("SELECT u From Usuario u WHERE u.userName='"+userName+"'");
+            Usuario usuario = (Usuario) query.getSingleResult();
+            return usuario;
+        } catch(NoResultException e ){
+            return null;
+        }
         
-        Query query = enitityManager.createQuery
-            ("SELECT u From Usuario WHERE u.userName='"+userName+"'");
-        Usuario usuario = (Usuario) query.getSingleResult();
-        return usuario;
     }
     
     public Usuario buscaUsuario(int id) {
