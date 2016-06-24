@@ -17,11 +17,11 @@ import javax.persistence.Query;
  */
 public class UsuarioDAO {
     
-    EntityManager enitityManager = new JPAutil().getEntityManager();
+    EntityManager entityManager = new JPAutil().getEntityManager();
     
     public Usuario buscaUsuario(String userName) {
         try {
-            Query query = enitityManager.createQuery
+            Query query = entityManager.createQuery
                 ("SELECT u From Usuario u WHERE u.userName='"+userName+"'");
             Usuario usuario = (Usuario) query.getSingleResult();
             return usuario;
@@ -31,9 +31,20 @@ public class UsuarioDAO {
         
     }
     
+    public void alteraUsuario(Usuario usario) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(usario);
+            entityManager.getTransaction().commit();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+    
     public Usuario buscaUsuario(int id) {
         
-        Query query = enitityManager.createQuery
+        Query query = entityManager.createQuery
             ("SELECT u From Usuario u WHERE u.id='"+id+"'");
         Usuario usuario = (Usuario) query.getSingleResult();
         return usuario;
