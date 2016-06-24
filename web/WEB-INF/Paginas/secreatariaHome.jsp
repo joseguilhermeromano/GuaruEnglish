@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Redefinir Senha</title>
+        <title>Secretaria</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Secreataria</h1>
     </body>
 </html>
