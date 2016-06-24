@@ -28,7 +28,7 @@ public class Turma {
     private String status;
     
     @ManyToOne()
-    @JoinColumn(name = "id_modulo")
+    @JoinColumn(name = "id_professor")
     private Professor professor;
     
     @ManyToOne()
