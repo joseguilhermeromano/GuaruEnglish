@@ -9,6 +9,7 @@ import com.guaruenglish.model.Aluno;
 import com.guaruenglish.util.JPAutil;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.RollbackException;
 
@@ -31,8 +32,19 @@ public class AlunoDAO {
             System.out.println("erro:" + e);
         }
     }
-
-    public Aluno buscaAluno(int matricula) {
+    
+    public Aluno buscaAluno(int id) {
+        try {
+            Query query = entityManager.createQuery
+                ("SELECT a From Aluno a WHERE a.id='"+id+"'");
+            Aluno aluno = (Aluno) query.getSingleResult();
+            return aluno;
+        } catch(NoResultException e ){
+            return null;
+        }
+    }
+    
+    public Aluno buscaAlunoPorMatricula(int matricula) {
         Aluno aluno = null;
         Query query = entityManager.createQuery("SELECT p FROM Aluno p WHERE p.matricula like '" + matricula + "'");
         aluno = (Aluno) query.getSingleResult();
