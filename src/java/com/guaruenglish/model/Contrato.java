@@ -44,7 +44,7 @@ public class Contrato {
     private Modulo modulo;
     
     @ManyToOne()
-    @JoinColumn(name = "id_aluno", referencedColumnName = "id")
+    @JoinColumn(name = "id_aluno", referencedColumnName = "id_aluno")
     private Aluno aluno;
     
     public Contrato() {
