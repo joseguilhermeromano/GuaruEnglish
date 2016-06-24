@@ -25,7 +25,7 @@ public class PlantaoDuvida {
     private float qtdhoras;
     
     @ManyToOne
-    @JoinColumn(name = "id_professor", referencedColumnName = "id")
+    @JoinColumn(name = "id_professor")
     private Professor professor;
     
     public PlantaoDuvida() {
