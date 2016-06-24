@@ -8,6 +8,7 @@ package com.guaruenglish.model;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -20,7 +21,7 @@ import javax.persistence.Table;
 @Table(name = "aluno")
 @PrimaryKeyJoinColumn(name = "id_aluno", referencedColumnName = "id")
 public class Aluno extends Usuario{
-    
+        
     @Column(unique = true)
     private String matricula;
     
