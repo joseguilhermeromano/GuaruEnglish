@@ -9,4 +9,17 @@
             30
         </session-timeout>
     </session-config>
+    
+    
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>com.guaruenglish.servlet.Controller</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/Executa</url-pattern>
+    </servlet-mapping>
+    
+    
 </web-app>
