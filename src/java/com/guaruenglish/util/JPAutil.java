@@ -14,7 +14,7 @@ import javax.persistence.Persistence;
  * @author Luiz Felipe
  */
 public class JPAutil {
-    private static EntityManagerFactory entityManagerFactory = 
+    private static final EntityManagerFactory entityManagerFactory = 
             Persistence.createEntityManagerFactory("guaruenglish");
     
     public EntityManager getEntityManager() {
