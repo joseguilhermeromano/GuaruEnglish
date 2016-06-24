@@ -19,5 +19,6 @@
             <input type="submit" value="Salvar">
             <input type="hidden" name="tarefa" value="RedefinirSenha">
         </form>
+        <c:if test="${not empty error}"><span>${error}</span> </c:if>
     </body>
 </html>
