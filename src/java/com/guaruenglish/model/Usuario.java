@@ -6,6 +6,7 @@
 package com.guaruenglish.model;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,13 +27,17 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
+    
+    @Column(unique = true)
     private String userName;
+    
     private String cargo;
     private int status;
     private String senha;
     private String perfilAcesso;
     private String cpf;
     private Date senhaData;
+    private int statusSenha;
     
     public Usuario() {
         
@@ -164,5 +169,23 @@ public class Usuario {
         this.senhaData = senhaData;
     }
     
+    
+    public void atualizaSenha(String senha) {
+        this.setSenha(senha);
+    }
+
+    /**
+     * @return the statusSenha
+     */
+    public int getStatusSenha() {
+        return statusSenha;
+    }
+
+    /**
+     * @param statusSenha the statusSenha to set
+     */
+    public void setStatusSenha(int statusSenha) {
+        this.statusSenha = statusSenha;
+    }
     
 }
