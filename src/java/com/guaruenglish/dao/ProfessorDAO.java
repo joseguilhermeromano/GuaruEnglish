@@ -8,6 +8,7 @@ package com.guaruenglish.dao;
 import com.guaruenglish.model.Professor;
 import com.guaruenglish.util.JPAutil;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -19,10 +20,15 @@ public class ProfessorDAO {
     EntityManager entityManager = new JPAutil().getEntityManager();
     
     public Professor buscaProfessor(int id) {
-        Query query = entityManager.createQuery
-            ("SELECT p FROM Professor WHERE p.id='"+id+"'");
-        Professor professor = (Professor)query.getSingleResult();
-        return professor;
+        
+        try {
+            Query query = entityManager.createQuery
+                ("SELECT p FROM Professor p WHERE p.id='"+id+"'");
+            Professor professor = (Professor)query.getSingleResult();
+            return professor;
+        } catch(NoResultException e) {
+            return null;
+        }
     }
     
     
