@@ -34,7 +34,7 @@ public class UsuarioDAO {
     public Usuario buscaUsuario(int id) {
         
         Query query = enitityManager.createQuery
-            ("SELECT u From Usuario WHERE u.id='"+id+"'");
+            ("SELECT u From Usuario u WHERE u.id='"+id+"'");
         Usuario usuario = (Usuario) query.getSingleResult();
         return usuario;
     }
