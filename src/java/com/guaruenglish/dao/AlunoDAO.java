@@ -17,7 +17,9 @@ import javax.persistence.RollbackException;
  * @author Aluno
  */
 public class AlunoDAO {
-     EntityManager entityManager = new JPAutil().getEntityManager();
+
+    EntityManager entityManager = new JPAutil().getEntityManager();
+
     public void cadastrarAluno(Aluno aluno) {
         try {
             entityManager.setProperty(null, aluno.getCargo());
@@ -25,27 +27,27 @@ public class AlunoDAO {
             entityManager.persist(aluno);
             entityManager.getTransaction().commit();
             entityManager.close();
-        }catch(RollbackException e) {
-            System.out.println("erro:"+e);
+        } catch (RollbackException e) {
+            System.out.println("erro:" + e);
         }
     }
+
     public Aluno buscaAluno(int matricula) {
-            Aluno aluno = null;
-            Query query = entityManager.createQuery
-                ("SELECT p FROM Aluno p WHERE p.matricula like '"+matricula+"'");
-            aluno = (Aluno) query.getSingleResult();
-            return aluno;     
+        Aluno aluno = null;
+        Query query = entityManager.createQuery("SELECT p FROM Aluno p WHERE p.matricula like '" + matricula + "'");
+        aluno = (Aluno) query.getSingleResult();
+        return aluno;
     }
-    
-    public boolean AlteraAluno(Aluno aluno){
-        /*
-        Aluno alunoaux = entityManager.find(Aluno.class, aluno.getId());
+
+    public boolean AlteraAluno(Aluno aluno) {
         try {
             entityManager.getTransaction().begin();
-            aluno.
-        } catch (Exception e) {
-        } 
-        */
-        return true; 
+            entityManager.merge(aluno);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        return true;
     }
 }
