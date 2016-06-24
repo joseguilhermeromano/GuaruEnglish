@@ -40,7 +40,7 @@ public class Login implements Tarefa {
             HttpSession session = req.getSession();
             session.setAttribute("usuarioLogado", usuario);
             
-            if(senhaExpirada(usuario) | usuario.getStatusSenha() == 1) {
+            if(senhaExpirada(usuario) | usuario.getStatusSenha() == 0) {
                 return "WEB-INF/Paginas/redefinirSenha.jsp";
             }
      
