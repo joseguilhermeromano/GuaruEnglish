@@ -5,9 +5,8 @@
  */
 package com.guaruenglish.dao;
 
-import com.guaruenglish.model.Aluno;
+import com.guaruenglish.model.Turma;
 import com.guaruenglish.util.JPAutil;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -15,47 +14,47 @@ import javax.persistence.RollbackException;
 
 /**
  *
- * @author Aluno
+ * @author rafin
  */
-public class AlunoDAO {
+public class TurmaDAO {
 
     EntityManager entityManager = new JPAutil().getEntityManager();
 
-    public void cadastrarAluno(Aluno aluno) {
+    public void cadastrarTurma(Turma turma) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(aluno);
+            entityManager.persist(turma);
             entityManager.getTransaction().commit();
             entityManager.close();
         } catch (RollbackException e) {
             System.out.println("erro:" + e);
         }
     }
-    
-    //busca aluno por CPF?
-    public Aluno buscaAluno(int id) {
+
+    public Turma buscaTurmaPorIdModulo(int id_modulo) {
         try {
-            Query query = entityManager.createQuery
-                ("SELECT a From Aluno a WHERE a.id='"+id+"'");
-            Aluno aluno = (Aluno) query.getSingleResult();
-            return aluno;
-        } catch(NoResultException e ){
+            Query query = entityManager.createQuery("SELECT t From Turma t WHERE t.id_modulo'" + id_modulo + "'");
+            Turma turma = (Turma) query.getResultList();
+            return turma;
+        } catch (NoResultException e) {
             return null;
         }
     }
-    
-    
-    public Aluno buscaAlunoPorMatricula(int matricula) {
-        Aluno aluno = null;
-        Query query = entityManager.createQuery("SELECT p FROM Aluno p WHERE p.matricula like '" + matricula + "'");
-        aluno = (Aluno) query.getSingleResult();
-        return aluno;
+
+    public Turma buscaTurmaPorIdProfessor(int id_professor) {
+        try {
+            Query query = entityManager.createQuery("SELECT c From Parcela c WHERE c.id_modulo'" + id_professor + "'");
+            Turma turma = (Turma) query.getResultList();
+            return turma;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
-    public boolean alteraAluno(Aluno aluno) {
+    public boolean alteraTurma(Turma turma) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(aluno);
+            entityManager.merge(turma);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();

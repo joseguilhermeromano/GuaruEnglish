@@ -5,9 +5,8 @@
  */
 package com.guaruenglish.dao;
 
-import com.guaruenglish.model.Aluno;
+import com.guaruenglish.model.Parcela;
 import com.guaruenglish.util.JPAutil;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -15,47 +14,37 @@ import javax.persistence.RollbackException;
 
 /**
  *
- * @author Aluno
+ * @author rafin
  */
-public class AlunoDAO {
+public class ParcelaDAO {
 
     EntityManager entityManager = new JPAutil().getEntityManager();
 
-    public void cadastrarAluno(Aluno aluno) {
+    public void cadastrarParcela(Parcela parcela) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(aluno);
+            entityManager.persist(parcela);
             entityManager.getTransaction().commit();
             entityManager.close();
         } catch (RollbackException e) {
             System.out.println("erro:" + e);
         }
     }
-    
-    //busca aluno por CPF?
-    public Aluno buscaAluno(int id) {
+
+    public Parcela buscaParcelaIdContrato(int id_contrato) {
         try {
-            Query query = entityManager.createQuery
-                ("SELECT a From Aluno a WHERE a.id='"+id+"'");
-            Aluno aluno = (Aluno) query.getSingleResult();
-            return aluno;
-        } catch(NoResultException e ){
+            Query query = entityManager.createQuery("SELECT c From Parcela c WHERE c.id_contrato'" + id_contrato + "'");
+            Parcela parcela = (Parcela) query.getResultList();
+            return parcela;
+        } catch (NoResultException e) {
             return null;
         }
     }
     
-    
-    public Aluno buscaAlunoPorMatricula(int matricula) {
-        Aluno aluno = null;
-        Query query = entityManager.createQuery("SELECT p FROM Aluno p WHERE p.matricula like '" + matricula + "'");
-        aluno = (Aluno) query.getSingleResult();
-        return aluno;
-    }
-
-    public boolean alteraAluno(Aluno aluno) {
+    public boolean alteraParcela(Parcela parcela) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(aluno);
+            entityManager.merge(parcela);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();
