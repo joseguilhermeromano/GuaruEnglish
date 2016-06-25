@@ -36,10 +36,7 @@ public class RedefinirSenha implements Tarefa {
         }
         
         Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioLogado");
-        usuario.setSenha(senha);
-        usuario.setStatusSenha(1);
-        
-        //ainda falta atualizar a data de expiração da senha.
+        usuario.atualizaSenha(senha);
         
         new UsuarioDAO().alteraUsuario(usuario);
         return PAGINA_PERFIL.get(usuario.getPerfilAcesso());
