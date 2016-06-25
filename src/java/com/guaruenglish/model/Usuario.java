@@ -5,6 +5,7 @@
  */
 package com.guaruenglish.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -169,11 +170,29 @@ public class Usuario {
         this.senhaData = senhaData;
     }
     
-    
+    /**
+     * Atualiza a senha de usuario, a data de expiração 
+     * e o status da senha.
+     * @param senha 
+     */
     public void atualizaSenha(String senha) {
-        this.setSenha(senha);
+        this.senha = senha;
+        this.statusSenha = 1;
+        atualizaDataSenha();
     }
-
+    
+    /**
+     * Atualiza a data de expiração da senha em 5 mêses
+     */
+    private void atualizaDataSenha() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(this.senhaData);
+        calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)+5);
+        this.senhaData = calendar.getTime();
+    }
+    
+    
+    
     /**
      * @return the statusSenha
      */
@@ -187,5 +206,5 @@ public class Usuario {
     public void setStatusSenha(int statusSenha) {
         this.statusSenha = statusSenha;
     }
-    
+       
 }
