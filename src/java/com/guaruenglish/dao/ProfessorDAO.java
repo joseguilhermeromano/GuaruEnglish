@@ -31,6 +31,18 @@ public class ProfessorDAO {
             return null;
         }
     }
+
+    public boolean alteraProfessor(Professor professor) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(professor);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        return true;
+    }
     
     public void cadastrarProfessor(Professor professor) {
         try {
