@@ -13,6 +13,7 @@
         <ul>
             <li>Cadastrar Módulos</li>
             <li>Consultar Módulos</li>
+            <li>Oferecer Módulos</li>
             <li>Cadastrar Turmas</li>
             <li>Consultar Turmas</li>
         </ul>
@@ -23,17 +24,18 @@
                        <c:param name="tarefa" value="RouteAcessa"></c:param>
                        <c:param name="action" value="cadastrarUsuario"></c:param>
                    </c:url>">Cadastra Usuário</a></li>
-            <li><a href="<c:url value="Acessa">
-                       <c:param name="tarefa" value="RouteAcessa"></c:param>
-                       <c:param name="action" value="consultarUsuario"></c:param>
+            
+            <li><a href="<c:url value="Executa">
+                       <c:param name="tarefa" value="ConsultarUsuarios"></c:param>
                    </c:url>">Consultar Usuários</a></li>
         </ul>
     </li>
-    <li>Alunos
+    <li>Contratação
     
     </li>
     <li>Professor
-    
-    
     </li>
+    <li><a href="<c:url value="Executa">
+               <c:param name="tarefa" value="Logoff"></c:param>
+           </c:url>">Logoff</a></li>
 </ul>
