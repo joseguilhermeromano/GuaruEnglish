@@ -7,9 +7,11 @@ package com.guaruenglish.dao;
 
 import com.guaruenglish.model.Usuario;
 import com.guaruenglish.util.JPAutil;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.persistence.RollbackException;
 
 /**
  *
@@ -50,5 +52,39 @@ public class UsuarioDAO {
         return usuario;
     }
     
+    public boolean cadastrarUsuario(Usuario usuario) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(usuario);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            return true;
+        } catch(RollbackException ex) {
+            entityManager.getTransaction().rollback();
+            return false;
+        }
+    }
+    
+    public List<Usuario> consultarUsuarios() {
+        try {
+            Query query = entityManager.createQuery("SELECT u FROM Usuario u");
+            List<Usuario> usuarios = query.getResultList();
+            return usuarios;
+        } catch(NoResultException e) {
+            return null;
+        }
+    }
+    
+    public List<Usuario> consultarUsuarios(String nome, String cpf) {
+        try {
+            Query query = entityManager.createQuery
+        ("SELECT u FROM Ususario u WHERE u.nome='"+nome+"' or u.cpf='"+cpf+"'");
+            List<Usuario> usuarios = query.getResultList();
+            return usuarios;
+        } catch(NoResultException e) {
+            return null;
+        }
+    }
+        
     
 }
