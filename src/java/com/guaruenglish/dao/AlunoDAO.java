@@ -21,14 +21,17 @@ public class AlunoDAO {
 
     EntityManager entityManager = new JPAutil().getEntityManager();
 
-    public void cadastrarAluno(Aluno aluno) {
+    public boolean cadastrarAluno(Aluno aluno) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(aluno);
             entityManager.getTransaction().commit();
             entityManager.close();
+            return true;
         } catch (RollbackException e) {
             System.out.println("erro:" + e);
+            entityManager.getTransaction().rollback();
+            return false;
         }
     }
     
