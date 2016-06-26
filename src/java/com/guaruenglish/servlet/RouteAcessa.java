@@ -19,6 +19,7 @@ public class RouteAcessa implements Tarefa{
     private final static Map<String,String> PAGINA = new HashMap();
         static {
             PAGINA.put("cadastrarUsuario", "WEB-INF/Paginas/secretaria/cadastrarUsuario.jsp");
+            PAGINA.put("Secretaria", "WEB-INF/Paginas/secretariaHome.jsp");
         }
     
     @Override
@@ -28,6 +29,5 @@ public class RouteAcessa implements Tarefa{
             return pagina;
         return "index.jsp";
     }
-    
     
 }
