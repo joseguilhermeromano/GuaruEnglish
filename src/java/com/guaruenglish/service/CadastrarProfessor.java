@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CadastrarProfessor implements InterfaceCadastrarUsuario {
 
     @Override
-    public void cadastrar(HttpServletRequest req, HttpServletResponse resp) {
+    public boolean cadastrar(HttpServletRequest req, HttpServletResponse resp) {
         String nome = req.getParameter("nome");
         String userName = req.getParameter("userName");
         String senha = req.getParameter("senha");
@@ -38,11 +38,12 @@ public class CadastrarProfessor implements InterfaceCadastrarUsuario {
         professor.setSenha(senha);
         Date senhaData = new Date();
         professor.setSenhaData(senhaData);
-        professor.setStatus(0);
+        professor.setStatusSenha(0);
+        professor.setStatus(1);
         professor.setUserName(userName);
         professor.setEspecialidade(especialidade);
         
-        new ProfessorDAO().cadastrarProfessor(professor);
+        return new ProfessorDAO().cadastrarProfessor(professor);
         
     }
     
