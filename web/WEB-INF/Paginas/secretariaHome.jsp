@@ -12,7 +12,7 @@
         <title>Secretaria</title>
     </head>
     <body>
+        <jsp:include page="/templates/nav_secretaria.jsp"></jsp:include>
         <h1>Secreataria</h1>
-        
     </body>
 </html>
