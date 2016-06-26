@@ -10,6 +10,7 @@ import com.guaruenglish.util.JPAutil;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.persistence.RollbackException;
 
 /**
  *
@@ -31,5 +32,15 @@ public class ProfessorDAO {
         }
     }
     
+    public void cadastrarProfessor(Professor professor) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(professor);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+        } catch(RollbackException e) {
+            
+        }
+    }
     
 }
