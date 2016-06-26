@@ -13,7 +13,7 @@
     </head>
     <body>
         <jsp:include page="/templates/nav_secretaria.jsp"></jsp:include>
-        <h1>${title}</h1>
+        <h1>Cadastrar Usuário</h1>
         
         <form action="Executa" method="post" id="formCadastra">
             <label>Nome: </label><input type="text" name="nome"><br/><br/>
