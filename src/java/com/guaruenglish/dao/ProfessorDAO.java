@@ -44,14 +44,16 @@ public class ProfessorDAO {
         return true;
     }
     
-    public void cadastrarProfessor(Professor professor) {
+    public boolean cadastrarProfessor(Professor professor) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(professor);
             entityManager.getTransaction().commit();
             entityManager.close();
+            return true;
         } catch(RollbackException e) {
-            
+            entityManager.getTransaction().rollback();
+            return false;
         }
     }
     
