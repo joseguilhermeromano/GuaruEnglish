@@ -13,5 +13,5 @@ import javax.servlet.http.HttpServletResponse;
  * @author Luiz Felipe
  */
 public interface InterfaceCadastrarUsuario {
-    public void cadastrar(HttpServletRequest req, HttpServletResponse resp);
+    public boolean cadastrar(HttpServletRequest req, HttpServletResponse resp);
 }
