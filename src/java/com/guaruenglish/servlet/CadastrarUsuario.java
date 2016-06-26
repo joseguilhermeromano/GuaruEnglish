@@ -25,19 +25,22 @@ public class CadastrarUsuario implements Tarefa {
         
         try {
             Class<?> tipo = Class.forName(tipoUsuario);
-            InterfaceCadastrarUsuario instacia = (InterfaceCadastrarUsuario) tipo.newInstance();
-            instacia.cadastrar(req, resp);
+            InterfaceCadastrarUsuario instacia = 
+                    (InterfaceCadastrarUsuario) tipo.newInstance();
+            
+            if(instacia.cadastrar(req, resp))
+                return "WEB-INF/Paginas/secretaria/cadastrarUsuarioSucesso.jsp";
+            
         } catch(ClassNotFoundException e ) {
         } catch (InstantiationException ex) {
-            Logger.getLogger(CadastrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastrarUsuario.class.getName()).
+                    log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(CadastrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastrarUsuario.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
         
-        
-        
         return "WEB-INF/Paginas/secretaria/cadastrarUsuario.jsp";
-        
     }
     
 }
