@@ -33,10 +33,10 @@ public class UsuarioDAO {
         
     }
     
-    public void alteraUsuario(Usuario usario) {
+    public void alteraUsuario(Usuario usuario) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(usario);
+            entityManager.merge(usuario);
             entityManager.getTransaction().commit();
         } catch(Exception ex) {
             ex.printStackTrace();
