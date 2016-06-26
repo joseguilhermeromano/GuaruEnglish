@@ -10,6 +10,14 @@
         </session-timeout>
     </session-config>
     
+    <filter>
+        <filter-name>FiltroAcessa</filter-name>
+        <filter-class>com.guaruenglish.servlet.FiltroAcessa</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FiltroAcessa</filter-name>
+        <url-pattern>/Acessa/*</url-pattern>
+    </filter-mapping>
     
     <servlet>
         <servlet-name>Controller</servlet-name>
@@ -20,6 +28,12 @@
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Executa</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/Acessa</url-pattern>
+    </servlet-mapping>
+    
     
     
 </web-app>
