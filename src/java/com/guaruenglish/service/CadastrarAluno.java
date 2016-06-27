@@ -31,7 +31,7 @@ public class CadastrarAluno implements InterfaceCadastrarUsuario {
         aluno.setNome(nome);
         aluno.setCpf(cpf);
         aluno.setPerfilAcesso(cargo);
-        aluno.setStatus(1);
+        aluno.setStatus(0);
         aluno.setSenha(senha);
         Date senhaData = new Date();
         aluno.setSenhaData(senhaData);
