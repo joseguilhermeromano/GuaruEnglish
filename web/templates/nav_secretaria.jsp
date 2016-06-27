@@ -11,10 +11,17 @@
 <ul>
     <li>Cursos
         <ul>
-            <li>Cadastrar Módulos</li>
+            <li><a href="<c:url value="Executa">
+                    <c:param name="tarefa" value="CadastrarModulo">
+                    </c:param></c:url>">
+                    Cadastrar Módulos</a></li>
             <li>Consultar Módulos</li>
             <li>Oferecer Módulos</li>
-            <li>Cadastrar Turmas</li>
+            <li><a href="<c:url value="Executa">
+                    <c:param name="tarefa" value="CadastrarTurma">
+                    </c:param></c:url>">
+                Cadastrar Turmas</a>
+            </li>
             <li>Consultar Turmas</li>
         </ul>
     </li>
