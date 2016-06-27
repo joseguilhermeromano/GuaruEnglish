@@ -42,7 +42,7 @@ public class UsuarioDAO {
         }
     }
     
-    public Usuario buscaUsuario(int id) {
+    public Usuario buscaUsuarioId(int id) {
         
         Query query = entityManager.createQuery
             ("SELECT u From Usuario u WHERE u.id='"+id+"'");
