@@ -36,6 +36,8 @@ public class Usuario {
     private int status;
     private String senha;
     private String perfilAcesso;
+    
+    @Column(unique = true) 
     private String cpf;
     private Date senhaData;
     private int statusSenha;
@@ -186,7 +188,8 @@ public class Usuario {
      */
     private void atualizaDataSenha() {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(this.senhaData);
+        Date dataAtual = new Date();
+        calendar.setTime(dataAtual);
         calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)+5);
         this.senhaData = calendar.getTime();
     }
