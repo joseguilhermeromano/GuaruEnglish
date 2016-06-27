@@ -7,9 +7,16 @@ package com.guaruenglish.servlet;
 
 import com.guaruenglish.dao.CursoDAO;
 import com.guaruenglish.dao.ModuloDAO;
+import com.guaruenglish.dao.TurmaDAO;
 import com.guaruenglish.model.Curso;
 import com.guaruenglish.model.Modulo;
+import com.guaruenglish.model.Turma;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,9 +28,33 @@ public class CadastrarTurma implements Tarefa {
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
-        String pagina = "asd";
-        if(req.getParameter("idmodulo") == null) {
-            pagina = acesso(req, resp);
+        String pagina = "WEB-INF/Paginas/secretaria/cadastrarTurma.jsp";
+        List<Curso> cursos = new CursoDAO().consultaCursos();
+        req.setAttribute("cursos", cursos);
+        
+        if(req.getParameter("modulo") != null) {
+            try {
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                Date dataInicio = df.parse(req.getParameter("dataInicio"));
+                Date dataFim = df.parse(req.getParameter("dataFim"));
+                String periodo = req.getParameter("periodo");
+                int idModulo = Integer.parseInt(req.getParameter("modulo"));
+                
+                Turma turma = new Turma();
+                turma.setModulo(new ModuloDAO().buscaModulo(idModulo));
+                turma.setDataFim(dataFim);
+                turma.setDataInicio(dataInicio);
+                turma.setPeriodo(periodo);
+                turma.setStatus(1);
+                turma.calculaQtdAulasSemanas();
+                
+                if(new TurmaDAO().cadastrarTurma(turma))
+                    pagina = "WEB-INF/Paginas/secretaria/cadastraTurmaSucesso.jsp";
+                
+            } catch (ParseException ex) {
+                Logger.getLogger(CadastrarTurma.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         
         return pagina;     
@@ -37,8 +68,6 @@ public class CadastrarTurma implements Tarefa {
      * @return 
      */
     private String acesso(HttpServletRequest req, HttpServletResponse resp) {
-        List<Curso> cursos = new CursoDAO().consultaCursos();
-        req.setAttribute("cursos", cursos);
         return "WEB-INF/Paginas/secretaria/cadastrarTurma.jsp";
     }
     
