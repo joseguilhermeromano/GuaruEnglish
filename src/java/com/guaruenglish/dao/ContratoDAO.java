@@ -7,7 +7,9 @@ package com.guaruenglish.dao;
 
 import com.guaruenglish.model.Aluno;
 import com.guaruenglish.model.Contrato;
+import com.guaruenglish.model.Turma;
 import com.guaruenglish.util.JPAutil;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -32,20 +34,20 @@ public class ContratoDAO {
         }
     }
 
-    public Contrato buscaContratoPorIdAluno(int id_aluno) {
+    public  List<Contrato> buscaContratoPorIdAluno(int id_aluno) {
         try {
             Query query = entityManager.createQuery("SELECT c From Contrato c WHERE c.id_aluno='" + id_aluno + "'");
-            Contrato contrato = (Contrato) query.getResultList();
+            List<Contrato> contrato =query.getResultList();
             return contrato;
         } catch (NoResultException e) {
             return null;
         }
     }
 
-    public boolean alteraContrato(Aluno aluno) {
+    public boolean alteraContrato(Contrato contrato) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(aluno);
+            entityManager.merge(contrato);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();
