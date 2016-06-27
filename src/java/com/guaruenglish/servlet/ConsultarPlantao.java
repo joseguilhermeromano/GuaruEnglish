@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,8 +28,11 @@ public class ConsultarPlantao implements Tarefa {
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
         List<PlantaoDuvida> plantao;
+        HttpSession session = req.getSession();
+        Usuario usr = (Usuario) session.getAttribute("usuarioLogado");
+        
         if(req.getParameter("dataInicial") != null | req.getParameter("dataFinal") != null) {     
-            plantao = new PlantaoDuvidaDAO().buscaPlantaoPorPeriodo(req.getParameter("dataInicial"), req.getParameter("dataFinal"),1);
+            plantao = new PlantaoDuvidaDAO().buscaPlantaoPorPeriodo(req.getParameter("dataInicial"), req.getParameter("dataFinal"),usr);
         }
         else {
             return "WEB-INF/Paginas/secretaria/error.jsp";   
