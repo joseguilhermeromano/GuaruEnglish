@@ -33,10 +33,10 @@ public class UsuarioDAO {
         
     }
     
-    public void alteraUsuario(Usuario usario) {
+    public void alteraUsuario(Usuario usuario) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(usario);
+            entityManager.merge(usuario);
             entityManager.getTransaction().commit();
         } catch(Exception ex) {
             ex.printStackTrace();
@@ -44,7 +44,7 @@ public class UsuarioDAO {
         }
     }
     
-    public Usuario buscaUsuario(int id) {
+    public Usuario buscaUsuarioId(int id) {
         
         Query query = entityManager.createQuery
             ("SELECT u From Usuario u WHERE u.id='"+id+"'");
@@ -78,7 +78,7 @@ public class UsuarioDAO {
     public List<Usuario> consultarUsuarios(String nome, String cpf) {
         try {
             Query query = entityManager.createQuery
-        ("SELECT u FROM Ususario u WHERE u.nome='"+nome+"' or u.cpf='"+cpf+"'");
+        ("SELECT u FROM Usuario u WHERE u.nome='"+nome+"' or u.cpf='"+cpf+"'");
             List<Usuario> usuarios = query.getResultList();
             return usuarios;
         } catch(NoResultException e) {
