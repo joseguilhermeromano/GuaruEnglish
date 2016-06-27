@@ -54,6 +54,18 @@ public class AlunoDAO {
         aluno = (Aluno) query.getSingleResult();
         return aluno;
     }
+    
+    public Aluno buscaAlunoPorCPF(String cpf) {
+        try {
+         
+            Query query = entityManager.createQuery
+                ("SELECT a FROM Aluno a WHERE a.matricula a.cpf='"+cpf+"'");
+            Aluno aluno = (Aluno) query.getSingleResult();
+            return aluno;
+        } catch(NoResultException ex) {
+            return null;
+        }
+    }
 
     public boolean alteraAluno(Aluno aluno) {
         try {

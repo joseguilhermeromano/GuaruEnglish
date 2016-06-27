@@ -38,7 +38,12 @@
         </ul>
     </li>
     <li>Contratação
-    
+        <ul>
+            <li><a href="<c:url value="">
+                       <c:param name="" value=""></c:param>
+                   </c:url>">
+                    Realizar Contratação</a></li>
+        </ul>
     </li>
     <li>Professor
     </li>
