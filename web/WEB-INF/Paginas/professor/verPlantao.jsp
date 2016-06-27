@@ -3,7 +3,7 @@
     Created on : 27/06/2016, 00:46:02
     Author     : rafin
 --%>
-<jsp:include page="../../../public/header.jsp"/>
+<jsp:include page="/templates/header.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
