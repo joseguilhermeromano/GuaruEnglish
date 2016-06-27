@@ -25,8 +25,9 @@ public class CadastrarProfessor implements InterfaceCadastrarUsuario {
         String cargo = req.getParameter("cargo");
         String especialidade = req.getParameter("especialidade");
         String nivelExperiencia = req.getParameter("experiencia");
-        String cpf = req.getParameter("cpf");
         float cargaHoraria = Float.parseFloat(req.getParameter("cargaHoraria"));
+        String cpf = req.getParameter("cpf");
+        
         
         Professor professor = new Professor();
         professor.setCargaHoraria(cargaHoraria);

@@ -31,7 +31,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="container visible-md-block visible-lg-block">
+            <div class="container-fluid visible-md-block visible-lg-block">
                 <img src="../resources/img/icon2.png">
             </div>
         </div>

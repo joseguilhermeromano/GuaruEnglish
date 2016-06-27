@@ -21,12 +21,11 @@ import javax.persistence.RollbackException;
  */
 public class PlantaoDuvidaDAO {
     EntityManager entityManager = new JPAutil().getEntityManager();
-    
-    public List<PlantaoDuvida> buscaPlantaoPorPeriodo(Date dataInicial, Date dataFinal,String userName ) {
+    //arrumar (id professor) comparação com data OK
+    public List<PlantaoDuvida> buscaPlantaoPorPeriodo(String dataInicial, String dataFinal,int id ) {
         try {
             Query query = entityManager.createQuery
-                ("SELECT u From PlantãoDuvida u WHERE u.userName='"+userName+"' and u.data BETWEEN date("+dataInicial+") AND "
-                        + "date("+dataFinal+")  ");
+                ("SELECT u From PlantaoDuvida as u WHERE u.id=1 and u.data BETWEEN date('"+dataInicial+"') and date('"+dataFinal+"')");
             List<PlantaoDuvida> plantao = query.getResultList();
             return plantao;
         } catch(NoResultException e ){
