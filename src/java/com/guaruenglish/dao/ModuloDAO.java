@@ -21,10 +21,10 @@ import javax.persistence.RollbackException;
 public class ModuloDAO {
     EntityManager entityManager = new JPAutil().getEntityManager();
     
-    public  List<Modulo> buscaModuloPorId(int id) {
+    public  Modulo buscaModulo(int id) {
         try {
             Query query = entityManager.createQuery("SELECT c From Modulo c WHERE c.id='" + id + "'");
-            List<Modulo> modulo =query.getResultList();
+            Modulo modulo = (Modulo) query.getSingleResult();
             return modulo;
         } catch (NoResultException e) {
             return null;
@@ -62,6 +62,14 @@ public class ModuloDAO {
         }
     }
     
-
+    public List<Modulo> consultaModulosAtivados() {
+        try {
+            Query query = entityManager.createQuery("SELECT m FROM Modulo m WHERE m.status=1");
+            List<Modulo> modulos = query.getResultList();
+            return modulos;
+        } catch(NoResultException ex) {
+            return null;
+        }
+    }
     
 }
