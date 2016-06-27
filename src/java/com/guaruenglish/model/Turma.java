@@ -5,6 +5,7 @@
  */
 package com.guaruenglish.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Turma {
     private Date dataFim;
     private int qtdAulas;
     private String periodo;
-    private String status;
+    private int status;
     
     @ManyToOne()
     @JoinColumn(name = "id_professor")
@@ -115,14 +116,14 @@ public class Turma {
     /**
      * @return the status
      */
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -153,5 +154,18 @@ public class Turma {
     public void setProfessor(Professor professor) {
         this.professor = professor;
     }
+    
+    
+    public void calculaQtdAulasSemanas() {
+        Calendar calendarI = Calendar.getInstance();
+        calendarI.setTime(this.dataInicio);
+        Calendar calendarF = Calendar.getInstance();
+        calendarF.setTime(this.dataFim);
+        //quantidade aproximada de semanas
+        int qtdSemanas = (calendarF.get(Calendar.MONTH) - calendarI.get(Calendar.MONTH))*4;
+        this.qtdAulas = this.modulo.getDuracao()/qtdSemanas;
+    }
+        
+    
     
 }
