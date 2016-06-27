@@ -21,14 +21,16 @@ public class TurmaDAO {
 
     EntityManager entityManager = new JPAutil().getEntityManager();
 
-    public void cadastrarTurma(Turma turma) {
+    public boolean cadastrarTurma(Turma turma) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(turma);
             entityManager.getTransaction().commit();
             entityManager.close();
+            return true;
         } catch (RollbackException e) {
             System.out.println("erro:" + e);
+            return false;
         }
     }
 
