@@ -11,6 +11,9 @@ import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.EntityManager;
+import javax.persistence.RollbackException;
+
 /**
  *
  * @author rafin
@@ -45,5 +48,20 @@ public class ModuloDAO {
             entityManager.getTransaction().rollback();
         }
     }
+     
+    public boolean inserirModulo(Modulo modulo) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(modulo);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            return true;
+        } catch(RollbackException ex) {
+            entityManager.getTransaction().rollback();
+            return false;
+        }
+    }
+    
+
     
 }
