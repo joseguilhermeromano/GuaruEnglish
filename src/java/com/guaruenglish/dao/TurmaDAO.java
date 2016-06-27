@@ -7,6 +7,7 @@ package com.guaruenglish.dao;
 
 import com.guaruenglish.model.Turma;
 import com.guaruenglish.util.JPAutil;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -31,21 +32,21 @@ public class TurmaDAO {
         }
     }
 
-    public Turma buscaTurmaPorIdModulo(int id_modulo) {
+    public List<Turma> buscaTurmaPorIdModulo(int id_modulo) {
         try {
             Query query = entityManager.createQuery("SELECT t From Turma t WHERE t.id_modulo'" + id_modulo + "'");
-            Turma turma = (Turma) query.getResultList();
-            return turma;
+            List<Turma> turmas = query.getResultList();
+            return turmas;
         } catch (NoResultException e) {
             return null;
         }
     }
 
-    public Turma buscaTurmaPorIdProfessor(int id_professor) {
+    public List<Turma>  buscaTurmaPorIdProfessor(int id_professor) {
         try {
-            Query query = entityManager.createQuery("SELECT c From Parcela c WHERE c.id_modulo'" + id_professor + "'");
-            Turma turma = (Turma) query.getResultList();
-            return turma;
+            Query query = entityManager.createQuery("SELECT c From Turma c WHERE c.id_professor'" + id_professor + "'");
+            List<Turma> turmas = query.getResultList();
+            return turmas;
         } catch (NoResultException e) {
             return null;
         }

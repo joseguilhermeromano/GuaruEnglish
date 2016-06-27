@@ -78,7 +78,7 @@ public class UsuarioDAO {
     public List<Usuario> consultarUsuarios(String nome, String cpf) {
         try {
             Query query = entityManager.createQuery
-        ("SELECT u FROM Ususario u WHERE u.nome='"+nome+"' or u.cpf='"+cpf+"'");
+        ("SELECT u FROM Usuario u WHERE u.nome='"+nome+"' or u.cpf='"+cpf+"'");
             List<Usuario> usuarios = query.getResultList();
             return usuarios;
         } catch(NoResultException e) {

@@ -36,5 +36,14 @@ public class ModuloDAO {
             return null;
         }
     }
+    public void alteraModulo(Modulo modulo) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(modulo);
+            entityManager.getTransaction().commit();
+        } catch(Exception ex) {
+            entityManager.getTransaction().rollback();
+        }
+    }
     
 }
