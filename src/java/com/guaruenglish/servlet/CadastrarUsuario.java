@@ -6,6 +6,8 @@
 package com.guaruenglish.servlet;
 
 import com.guaruenglish.service.InterfaceCadastrarUsuario;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -19,19 +21,20 @@ public class CadastrarUsuario implements Tarefa {
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
-        
+
         String tipoUsuario = req.getParameter("cargo");
         tipoUsuario = "com.guaruenglish.service.Cadastrar" + tipoUsuario;
-        
+
         try {
             Class<?> tipo = Class.forName(tipoUsuario);
-            InterfaceCadastrarUsuario instacia = 
-                    (InterfaceCadastrarUsuario) tipo.newInstance();
-            
-            if(instacia.cadastrar(req, resp))
+            InterfaceCadastrarUsuario instacia
+                    = (InterfaceCadastrarUsuario) tipo.newInstance();
+
+            if (instacia.cadastrar(req, resp)) {
                 return "WEB-INF/Paginas/secretaria/cadastrarUsuarioSucesso.jsp";
-            
-        } catch(ClassNotFoundException e ) {
+            }
+
+        } catch (ClassNotFoundException e) {
         } catch (InstantiationException ex) {
             Logger.getLogger(CadastrarUsuario.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -39,8 +42,16 @@ public class CadastrarUsuario implements Tarefa {
             Logger.getLogger(CadastrarUsuario.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
-        
+
         return "WEB-INF/Paginas/secretaria/cadastrarUsuario.jsp";
     }
-    
+
+    @Override
+    public Map perfil() {
+        Map map = new HashMap();
+        map.put("Secretaria", true);
+
+        return map;
+    }
+
 }

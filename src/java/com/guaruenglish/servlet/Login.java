@@ -58,4 +58,14 @@ public class Login implements Tarefa {
         Date date = new Date();
         return date.compareTo(usuario.getSenhaData()) >= 0;
     }
+
+    @Override
+    public Map perfil() {
+       Map map = new HashMap();
+       map.put("Aluno",true);
+       map.put("Professor",true);
+       map.put("Secretaria",true);
+       
+       return map;
+    }
 }

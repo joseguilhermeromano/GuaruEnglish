@@ -9,7 +9,9 @@ import com.guaruenglish.dao.CursoDAO;
 import com.guaruenglish.dao.ModuloDAO;
 import com.guaruenglish.model.Curso;
 import com.guaruenglish.model.Modulo;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,8 +24,8 @@ public class CadastrarModulo implements Tarefa {
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
         String pagina;
-        if(req.getParameter("curso") != null) {
-            
+        if (req.getParameter("curso") != null) {
+
             String descricao = req.getParameter("descricao");
             String conteudoBasico = req.getParameter("conteudoBasico");
             String publicoAlvo = req.getParameter("publicoAlvo");
@@ -31,8 +33,8 @@ public class CadastrarModulo implements Tarefa {
             int nivel = Integer.parseInt(req.getParameter("nivel"));
             float preco = Float.parseFloat(req.getParameter("preco"));
             int duracao = Integer.parseInt(req.getParameter("duracao"));
-            int id_curso =  Integer.parseInt(req.getParameter("curso"));
-            
+            int id_curso = Integer.parseInt(req.getParameter("curso"));
+
             Curso curso = new CursoDAO().consultaCurso(id_curso);
             Modulo modulo = new Modulo();
             modulo.setConteudoBasico(conteudoBasico);
@@ -43,18 +45,27 @@ public class CadastrarModulo implements Tarefa {
             modulo.setPreco(preco);
             modulo.setPublicoAlvo(publicoAlvo);
             modulo.setStatus(status);
-            
+
             boolean resposta = new ModuloDAO().inserirModulo(modulo);
-            if(resposta)
+            if (resposta) {
                 pagina = "WEB-INF/Paginas/secretaria/cadastrarModuloSucesso.jsp";
-            else 
-                pagina =  "WEB-INF/Paginas/secretaria/cadastrarModulo.jsp";
+            } else {
+                pagina = "WEB-INF/Paginas/secretaria/cadastrarModulo.jsp";
+            }
         } else {
             List<Curso> cursos = new CursoDAO().consultaCursos();
             req.setAttribute("cursos", cursos);
-            pagina =  "WEB-INF/Paginas/secretaria/cadastrarModulo.jsp";
+            pagina = "WEB-INF/Paginas/secretaria/cadastrarModulo.jsp";
         }
         return pagina;
     }
-    
+
+    @Override
+    public Map perfil() {
+        Map map = new HashMap();
+        map.put("Secretaria", true);
+
+        return map;
+    }
+
 }

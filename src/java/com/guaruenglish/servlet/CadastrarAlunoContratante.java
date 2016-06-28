@@ -6,6 +6,8 @@
 package com.guaruenglish.servlet;
 
 import com.guaruenglish.service.CadastrarAluno;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +26,14 @@ public class CadastrarAlunoContratante implements Tarefa {
             return "WEB-INF/Paginas/secretaria/cadastrarAlunoContratante";
         }
         
+    }
+
+    @Override
+    public Map perfil() {
+       Map map = new HashMap();
+       map.put("Secretaria",true);
+       
+       return map;
     }
     
 }
