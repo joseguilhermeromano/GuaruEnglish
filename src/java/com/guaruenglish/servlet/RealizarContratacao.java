@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,8 +26,10 @@ public class RealizarContratacao implements Tarefa {
         if(req.getParameter("cpf") != null) {
             Aluno aluno = new AlunoDAO().buscaAlunoPorCPF(req.getParameter("cpf"));
             if(aluno != null) {
-                req.setAttribute("aluno", aluno);
-                req.setAttribute("cursos", new CursoDAO().consultaCursos());
+                
+                HttpSession session = req.getSession();
+                session.setAttribute("alunoContratante", aluno);
+                
                 return "WEB-INF/Paginas/secretaria/contratarModulo.jsp";
             } else {
                 req.setAttribute("erro", "usuario não encontrado");
