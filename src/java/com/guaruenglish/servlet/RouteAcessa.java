@@ -13,22 +13,29 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author Luiz Felipe
- */
-public class RouteAcessa implements Tarefa{
-    
-    private final static Map<String,String> PAGINA = new HashMap();
-        static {
-            PAGINA.put("cadastrarUsuario", "WEB-INF/Paginas/secretaria/cadastrarUsuario.jsp");
-            PAGINA.put("Secretaria", "WEB-INF/Paginas/secretariaHome.jsp");
-            PAGINA.put("realizarContratacao", "WEB-INF/Paginas/secretaria/realizarContratacao.jsp");
-        }
-    
+ */    
+public class RouteAcessa implements Tarefa {
+
+    private final static Map<String, String> PAGINA = new HashMap();
+
+    static {
+        PAGINA.put("cadastrarUsuario", "WEB-INF/Paginas/secretaria/cadastrarUsuario.jsp");
+        PAGINA.put("Secretaria", "WEB-INF/Paginas/secretariaHome.jsp");
+    }
+
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
         String pagina = PAGINA.get(req.getParameter("action"));
-        if(pagina != null)
+        if (pagina != null) {
             return pagina;
+        }
         return "index.jsp";
     }
-    
+
+    @Override
+    public Map perfil() {
+        
+        return null;
+    }
+
 }

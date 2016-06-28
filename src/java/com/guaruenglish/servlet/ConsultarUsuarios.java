@@ -7,7 +7,9 @@ package com.guaruenglish.servlet;
 
 import com.guaruenglish.dao.UsuarioDAO;
 import com.guaruenglish.model.Usuario;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,5 +30,13 @@ public class ConsultarUsuarios implements Tarefa {
         }
         req.setAttribute("usuarios", usuarios);
         return "WEB-INF/Paginas/secretaria/consultarUsuarios.jsp";
+    }
+
+    @Override
+    public Map perfil() {
+       Map map = new HashMap();
+       map.put("Secretaria",true);
+       
+       return map;
     }
 }

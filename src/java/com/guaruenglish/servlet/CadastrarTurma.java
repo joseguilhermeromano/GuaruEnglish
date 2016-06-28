@@ -14,7 +14,9 @@ import com.guaruenglish.model.Turma;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -69,6 +71,14 @@ public class CadastrarTurma implements Tarefa {
      */
     private String acesso(HttpServletRequest req, HttpServletResponse resp) {
         return "WEB-INF/Paginas/secretaria/cadastrarTurma.jsp";
+    }
+
+    @Override
+    public Map perfil() {
+        Map map = new HashMap();
+       map.put("Secretaria",true);
+       
+       return map;
     }
     
     

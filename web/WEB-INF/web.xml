@@ -19,6 +19,18 @@
         <url-pattern>/Acessa/*</url-pattern>
     </filter-mapping>
     
+    <filter>
+        <filter-name>FiltroDePermissao</filter-name>
+        <filter-class>com.guaruenglish.servlet.FiltroDePermissao</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FiltroDePermissao</filter-name>
+        <url-pattern>WEB-INF/Paginas/*</url-pattern>
+    </filter-mapping>
+    
+    
+    
+    
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.guaruenglish.servlet.Controller</servlet-class>

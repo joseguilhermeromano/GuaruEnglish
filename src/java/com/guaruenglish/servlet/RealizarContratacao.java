@@ -8,6 +8,8 @@ package com.guaruenglish.servlet;
 import com.guaruenglish.dao.AlunoDAO;
 import com.guaruenglish.dao.CursoDAO;
 import com.guaruenglish.model.Aluno;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,6 +40,14 @@ public class RealizarContratacao implements Tarefa {
         
         //caso o usuário não escolha nenhuma opção
         return "WEB-INF/Paginas/secretaria/realizarContratacao.jsp";
+    }
+
+    @Override
+    public Map perfil() {
+       Map map = new HashMap();
+       map.put("Secretaria",true);
+       
+       return map;
     }
     
 }

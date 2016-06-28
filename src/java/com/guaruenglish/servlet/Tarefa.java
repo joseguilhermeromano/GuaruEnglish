@@ -5,6 +5,7 @@
  */
 package com.guaruenglish.servlet;
 
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,5 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 public interface Tarefa {
     
     String executa(HttpServletRequest req, HttpServletResponse resp);
+    Map perfil();
     
 }

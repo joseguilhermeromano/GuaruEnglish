@@ -12,6 +12,7 @@ import com.guaruenglish.model.Curso;
 import com.guaruenglish.model.Modulo;
 import com.guaruenglish.model.Turma;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -46,6 +47,11 @@ public class ContratarModulo implements Tarefa{
         }
         
         return "WEB-INF/Paginas/secretaria/contratarModulo.jsp";
+    }
+
+    @Override
+    public Map perfil() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

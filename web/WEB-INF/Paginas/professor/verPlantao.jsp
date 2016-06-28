@@ -18,7 +18,7 @@
             <label>De: </label><input type="date" name="dataInicial">
             <label>Até: </label><input type="date" name="dataFinal">
             <input type="hidden" name="tarefa" value="ConsultarPlantao">
-            <button form="formplantao" type="submit">Consultar</button>
+            <button form="formplantao" class="btn-warning" type="submit">Consultar</button>
         </form>
         <hr>
         <h1>Plantões:</h1>

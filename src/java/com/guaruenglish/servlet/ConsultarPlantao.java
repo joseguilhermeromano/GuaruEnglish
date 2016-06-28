@@ -12,7 +12,9 @@ import com.guaruenglish.model.PlantaoDuvida;
 import com.guaruenglish.model.Professor;
 import com.guaruenglish.model.Usuario;
 import com.guaruenglish.service.InterfaceCadastrarUsuario;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -27,9 +29,15 @@ public class ConsultarPlantao implements Tarefa {
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
+        
+        
         List<PlantaoDuvida> plantao;
         HttpSession session = req.getSession();
         Usuario usr = (Usuario) session.getAttribute("usuarioLogado");
+        Map map = new HashMap();
+        //map.put("Secretaria",new ProfessorDAO().buscaProfessor(id));
+        Usuario usuario = (Usuario)map.get(usr.getCargo());
+        
         
         if(req.getParameter("dataInicial") != null | req.getParameter("dataFinal") != null) {     
             plantao = new PlantaoDuvidaDAO().buscaPlantaoPorPeriodo(req.getParameter("dataInicial"), req.getParameter("dataFinal"),usr);
@@ -41,6 +49,15 @@ public class ConsultarPlantao implements Tarefa {
         req.setAttribute("plantao", plantao);
         return ("WEB-INF/Paginas/professor/verPlantao.jsp");
         
+    }
+
+    @Override
+    public Map perfil() {
+       Map map = new HashMap();
+       map.put("Professor",true);
+       map.put("Secretaria",true);
+       
+       return map;
     }
     
 }
