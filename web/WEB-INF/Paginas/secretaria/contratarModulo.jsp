@@ -37,7 +37,7 @@
                         </c:forEach>
                     </select><br/><br/>
                     <input type="submit" value="Continuar Contratação">
-                    <input type="hidden" name="tarefa" value="ContratarModulo">
+                    <input type="hidden" name="tarefa" value="PagamentoContrato">
                 </form>
             </c:if>
         </c:if>

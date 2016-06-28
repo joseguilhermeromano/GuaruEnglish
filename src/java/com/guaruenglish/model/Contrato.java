@@ -29,7 +29,7 @@ public class Contrato {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private float desconto;
+    private float desconto = (float) 0.05;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
@@ -147,6 +147,12 @@ public class Contrato {
      */
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+    
+    public float calculaValorContrato(float valorTotal) {
+        this.valor = valorTotal;
+        this.valor -= this.valor * this.desconto;
+        return this.valor;
     }
     
 }

@@ -5,13 +5,9 @@
  */
 package com.guaruenglish.servlet;
 
-import com.guaruenglish.dao.CursoDAO;
-import com.guaruenglish.dao.ModuloDAO;
 import com.guaruenglish.dao.TurmaDAO;
-import com.guaruenglish.model.Curso;
-import com.guaruenglish.model.Modulo;
+import com.guaruenglish.model.Contrato;
 import com.guaruenglish.model.Turma;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,22 +16,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Luiz Felipe
  */
-public class ContratarModulo implements Tarefa{
+public class PagamentoContrato implements Tarefa {
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
         
-        if(req.getParameter("idModulo") != null) {
-            Modulo modulo = new ModuloDAO().buscaModulo(Integer.parseInt(req.getParameter("idModulo")));
-            if(modulo != null) {
-                req.setAttribute("modulo", modulo);
-                req.setAttribute("turmas", modulo.getTurmas());
-            } else {
-                req.setAttribute("erro", "módulo não encontrado");
-            }
-        }
+        Turma turma = new TurmaDAO().buscaTurma(Integer.parseInt(req.getParameter("idTurma")));
+        req.setAttribute("turma", turma);
+        req.setAttribute("valorContrato", new Contrato().calculaValorContrato(turma.getModulo().getPreco()));
         
-        return "WEB-INF/Paginas/secretaria/contratarModulo.jsp";
+        
+        return "WEB-INF/Paginas/secretaria/pagamentoContrato.jsp";
+        
+        
+        
     }
 
     @Override

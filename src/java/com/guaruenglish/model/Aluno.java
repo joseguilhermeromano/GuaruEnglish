@@ -5,6 +5,8 @@
  */
 package com.guaruenglish.model;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +25,7 @@ import javax.persistence.Table;
 public class Aluno extends Usuario{
         
     @Column(unique = true)
-    private String matricula;
+    private String matricula = null;
     
     @OneToMany(mappedBy = "aluno")
     private List<Contrato> contratos;
@@ -40,13 +42,6 @@ public class Aluno extends Usuario{
     }
 
     /**
-     * @param matricula the matricula to set
-     */
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
-    /**
      * @return the contratos
      */
     public List<Contrato> getContratos() {
@@ -58,6 +53,13 @@ public class Aluno extends Usuario{
      */
     public void setContratos(List<Contrato> contratos) {
         this.contratos = contratos;
+    }
+    
+    public void geraMatricula(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        this.matricula = String.valueOf(cal.get(Calendar.YEAR)) + cal.get(Calendar.MONTH) + this.getId();
+                
     }
     
 }
