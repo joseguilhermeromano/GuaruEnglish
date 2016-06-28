@@ -20,6 +20,7 @@ public class RouteAcessa implements Tarefa{
         static {
             PAGINA.put("cadastrarUsuario", "WEB-INF/Paginas/secretaria/cadastrarUsuario.jsp");
             PAGINA.put("Secretaria", "WEB-INF/Paginas/secretariaHome.jsp");
+            PAGINA.put("realizarContratacao", "WEB-INF/Paginas/secretaria/realizarContratacao.jsp");
         }
     
     @Override

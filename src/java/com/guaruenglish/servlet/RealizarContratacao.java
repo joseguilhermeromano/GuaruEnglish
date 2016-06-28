@@ -6,6 +6,7 @@
 package com.guaruenglish.servlet;
 
 import com.guaruenglish.dao.AlunoDAO;
+import com.guaruenglish.dao.CursoDAO;
 import com.guaruenglish.model.Aluno;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,15 +24,20 @@ public class RealizarContratacao implements Tarefa {
             Aluno aluno = new AlunoDAO().buscaAlunoPorCPF(req.getParameter("cpf"));
             if(aluno != null) {
                 req.setAttribute("aluno", aluno);
-                return "WEB-INF/Paginas/secretaria/confirmaDados.jsp";
+                req.setAttribute("cursos", new CursoDAO().consultaCursos());
+                return "WEB-INF/Paginas/secretaria/contratarModulo.jsp";
             } else {
                 req.setAttribute("erro", "usuario não encontrado");
                 return "WEB-INF/Paginas/secretaria/realizarContratacao.jsp";
             }   
-        }
+        } 
         
-        //caso o usuário escolha a opção para cadastrar novo aluno contratante na view
-        return "WEB-INF/Paginas/secretaria/cadastrarAlunoContratante.jsp";
+        //caso o usuário escolha cadastrar novo aluno
+        if(req.getParameter("novoAluno") != null) 
+            return "WEB-INF/Paginas/secretaria/cadastrarAlunoContratante.jsp";
+        
+        //caso o usuário não escolha nenhuma opção
+        return "WEB-INF/Paginas/secretaria/realizarContratacao.jsp";
     }
     
 }
