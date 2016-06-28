@@ -16,7 +16,7 @@
     </filter>
     <filter-mapping>
         <filter-name>FiltroAcessa</filter-name>
-        <url-pattern>/Acessa/*</url-pattern>
+        <url-pattern>/Acessa</url-pattern>
     </filter-mapping>
     
     <filter>
@@ -25,11 +25,8 @@
     </filter>
     <filter-mapping>
         <filter-name>FiltroDePermissao</filter-name>
-        <url-pattern>WEB-INF/Paginas/*</url-pattern>
+        <url-pattern>/WEB-INF/Paginas/*</url-pattern>
     </filter-mapping>
-    
-    
-    
     
     <servlet>
         <servlet-name>Controller</servlet-name>
