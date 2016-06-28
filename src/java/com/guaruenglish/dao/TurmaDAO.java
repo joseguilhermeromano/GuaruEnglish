@@ -43,6 +43,16 @@ public class TurmaDAO {
             return null;
         }
     }
+    
+    public Turma buscaTurma(int id) {
+        try {
+            Query query = entityManager.createQuery("SELECT t FROM Turma t WHERE t.id='"+id+"'");
+            Turma turma = (Turma) query.getSingleResult();
+            return turma;
+        } catch(NoResultException ex) {
+            return null;
+        }
+    }
 
     public List<Turma>  buscaTurmaPorIdProfessor(int id_professor) {
         try {
