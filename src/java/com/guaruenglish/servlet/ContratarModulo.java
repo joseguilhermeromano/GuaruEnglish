@@ -25,23 +25,18 @@ public class ContratarModulo implements Tarefa{
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
         
-        List<Curso> cursos = new CursoDAO().consultaCursos();
-        req.setAttribute("cursos", cursos);
-        
-        if(req.getParameter("idCurso") != null) {
-            Curso curso = new CursoDAO().consultaCurso(Integer.parseInt(req.getParameter("idCurso")));
-            req.setAttribute("curso", curso);
-            req.setAttribute("modulos", curso.getModulos());
-        }
-        
         if(req.getParameter("idModulo") != null) {
             Modulo modulo = new ModuloDAO().buscaModulo(Integer.parseInt(req.getParameter("idModulo")));
-            req.setAttribute("modulos", modulo);
-            req.setAttribute("turmas", modulo.getTurmas());
+            if(modulo != null) {
+                req.setAttribute("modulo", modulo);
+                req.setAttribute("turmas", modulo.getTurmas());
+            } else {
+                req.setAttribute("erro", "módulo não encontrado");
+            }
         }
         
         if(req.getParameter("idTurma") != null) {
-            Turma turma = new TurmaDAO().buscaTurma(Integer.parseInt("idTurma"));
+            Turma turma = new TurmaDAO().buscaTurma(Integer.parseInt(req.getParameter("idTurma")));
             req.setAttribute("turma", turma);
             return "WEB-INF/Paginas/secretaria/pagamentoContrato.jsp";
         }
