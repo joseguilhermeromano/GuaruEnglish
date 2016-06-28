@@ -9,42 +9,37 @@
 <!DOCTYPE html>
 <jsp:include page="/templates/header.jsp"/>
     <body>
-        <h1>Contrato:</h1>
-        <h3>Curso:</h3>
-        <form action="Executa" method="post">
-            <select name="idCurso" class="selectpicker" onchange="this.form.submit()">
-                <c:if test="${curso != null}"><option selected>${curso.descricao}</option></c:if>
-                <c:forEach var="curso" items="${cursos}">
-                    <option value="${curso.id}">${curso.descricao}</option>
-                </c:forEach>
-            </select>
+        <jsp:include page="/templates/nav_secretaria.jsp"></jsp:include>
+        <h1>Contratar Módulo: </h1>
+        <form action="Executa" method="post"> 
+            <label>Código do Módulo: </label><input type="text" name="idModulo"
+            <c:if test="${modulo != null}">value="${modulo.id}"</c:if>                                  >
             <input type="hidden" name="tarefa" value="ContratarModulo">
+            <input type="submit" value="Buscar">
         </form>
         
-        <h3>Módulo:</h3>
-        <c:if test="${modulos == null}"><select><option>Modulos</option></select></c:if>
-        <c:if test="${modulos != null}">
+        <c:if test="${modulo != null}">
+            <h3>Informações do módulo:</h3>
+            <p>
+               <b>Curso: </b> ${modulo.curso.descricao}<br>
+               <b>Descrição: </b> ${modulo.descricao}
+               <b>Preço: </b> R$ ${modulo.preco}<br>
+               <b>Duração: </b> ${modulo.duracao} horas
+            </p>
             
-            <form action="Executa" method="post">
-                <select name="idModulo" class="selectpicker" onchange="this.form.submit()">
-                    <c:forEach var="modulo" items="${modulos}">
-                        <option value="${modulo.id}">${modulo.descricao}</option>
-                    </c:forEach>
-                </select>
-                <input type="hidden" name="tarefa" value="ContrarModulo">
-            </form>
+            <c:if test="${empty turmas}"><p>Não há Turmas cadastradas para esse módulo</p></c:if>
+            <c:if test="${not empty turmas}"> 
+            <h4>Turmas:</h4>
+                <form action="Executa">
+                    <select name="idTurma">
+                        <c:forEach var="turma" items="${turmas}">
+                            <option value="${turma.id}">Turma ${turma.id} - ${turma.periodo}</option>
+                        </c:forEach>
+                    </select><br/><br/>
+                    <input type="submit" value="Continuar Contratação">
+                    <input type="hidden" name="tarefa" value="ContratarModulo">
+                </form>
+            </c:if>
         </c:if>
-        
-        <c:if test="${turmas != null}">
-            <form action="Executa" method="post">
-                <select class="selectpicker" onclick="this.form.submit()">
-                    <c:forEach var="turma" items="${turmas}">
-                        <option value="${turma.id}">${turma.descricao}</option>
-                    </c:forEach>
-                </select>
-                <input type="hidden" name="tarefa" value="ContrarModulo">
-            </form>
-        </c:if>
-        
     </body>
 </html>
