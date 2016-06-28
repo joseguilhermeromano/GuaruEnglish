@@ -19,9 +19,9 @@ public class CadastrarAlunoContratante implements Tarefa {
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
         CadastrarAluno novoAluno = new CadastrarAluno();
         if(novoAluno.cadastrar(req, resp)){
-            return "WEB-INF/Paginas/secretaria/contrarModulo.jsp";
+            return "WEB-INF/Paginas/secretaria/contratarModulo.jsp";
         } else {
-            return "WEB-INF/Paginas/secretaria/cadastrarAlunoContratante";
+            return "WEB-INF/Paginas/secretaria/cadastrarAlunoContratante.jsp";
         }
         
     }
