@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <jsp:include page="/templates/header.jsp"/>
     <body>
+        <jsp:include page="/templates/nav_secretaria.jsp"></jsp:include>
         <h1>Realizar contratação</h1>
         <p>Realizar contratação para aluno já cadastrado:</p>
         <form action="Executa" method="post">
