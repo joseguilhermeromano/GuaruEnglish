@@ -7,11 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
+<jsp:include page="/templates/header.jsp"/>
     <body>
         <jsp:include page="/templates/nav_secretaria.jsp"></jsp:include>
         <h1>Cadastrar Turma</h1>

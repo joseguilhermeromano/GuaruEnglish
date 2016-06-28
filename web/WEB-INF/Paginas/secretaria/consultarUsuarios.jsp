@@ -7,16 +7,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
+<jsp:include page="/templates/header.jsp"/>
     <body>
         <jsp:include page="/templates/nav_secretaria.jsp"></jsp:include>
         <h1>Consultar Usuários</h1>
         <c:if test="${not empty usuarios}">
-            <table>
+            <table class="table">
                 <tr>
                     <th>Nome</th>
                     <th>UserName</th>

@@ -6,11 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Redefinir Senha</title>
-    </head>
+<jsp:include page="/templates/header.jsp"/>
     <body>
         <h3>É necessario redefinir sua senha</h3>
         <form action="Executa" method="post">

@@ -39,8 +39,8 @@
     </li>
     <li>Contratação
         <ul>
-            <li><a href="<c:url value="">
-                       <c:param name="" value=""></c:param>
+            <li><a href="<c:url value="Executa">
+                       <c:param name="tarefa" value="RealizarContratacao"></c:param>
                    </c:url>">
                     Realizar Contratação</a></li>
         </ul>
