@@ -7,6 +7,7 @@ package com.guaruenglish.dao;
 
 import com.guaruenglish.model.Aluno;
 import com.guaruenglish.util.JPAutil;
+import com.sun.xml.ws.rx.rm.runtime.sequence.persistent.PersistenceException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -28,7 +29,7 @@ public class AlunoDAO {
             entityManager.getTransaction().commit();
             entityManager.close();
             return true;
-        } catch (RollbackException e) {
+        } catch (Exception e) {
             System.out.println("erro:" + e);
             entityManager.getTransaction().rollback();
             return false;
@@ -59,7 +60,7 @@ public class AlunoDAO {
         try {
          
             Query query = entityManager.createQuery
-                ("SELECT a FROM Aluno a WHERE a.matricula a.cpf='"+cpf+"'");
+                ("SELECT a FROM Aluno a WHERE a.cpf='"+cpf+"'");
             Aluno aluno = (Aluno) query.getSingleResult();
             return aluno;
         } catch(NoResultException ex) {
