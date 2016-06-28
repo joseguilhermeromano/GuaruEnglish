@@ -7,25 +7,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
+<jsp:include page="/templates/header.jsp"/>
     <body>
         <h1>Contrato:</h1>
+        <h3>Curso:</h3>
         <form action="Executa" method="post">
-            <select class="selectpicker" onclick="this.form.submit()">
+            <select name="idCurso" class="selectpicker" onchange="this.form.submit()">
+                <c:if test="${curso != null}"><option selected>${curso.descricao}</option></c:if>
                 <c:forEach var="curso" items="${cursos}">
                     <option value="${curso.id}">${curso.descricao}</option>
                 </c:forEach>
             </select>
-            <input type="hidden" name="tarefa" value="ContrarModulo">
+            <input type="hidden" name="tarefa" value="ContratarModulo">
         </form>
         
+        <h3>Módulo:</h3>
+        <c:if test="${modulos == null}"><select><option>Modulos</option></select></c:if>
         <c:if test="${modulos != null}">
+            
             <form action="Executa" method="post">
-                <select name="idModulo" class="selectpicker" onclick="this.form.submit()">
+                <select name="idModulo" class="selectpicker" onchange="this.form.submit()">
                     <c:forEach var="modulo" items="${modulos}">
                         <option value="${modulo.id}">${modulo.descricao}</option>
                     </c:forEach>
