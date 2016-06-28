@@ -36,7 +36,7 @@ public class TurmaDAO {
 
     public List<Turma> buscaTurmaPorIdModulo(int id_modulo) {
         try {
-            Query query = entityManager.createQuery("SELECT t From Turma t WHERE t.id_modulo'" + id_modulo + "'");
+            Query query = entityManager.createQuery("SELECT t From Turma t WHERE t.modulo.id='" + id_modulo + "'");
             List<Turma> turmas = query.getResultList();
             return turmas;
         } catch (NoResultException e) {
