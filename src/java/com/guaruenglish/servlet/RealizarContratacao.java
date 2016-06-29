@@ -27,9 +27,9 @@ public class RealizarContratacao implements Tarefa {
             Aluno aluno = new AlunoDAO().buscaAlunoPorCPF(req.getParameter("cpf"));
             if(aluno != null) {
                 
-                HttpSession session = req.getSession();
+                HttpSession session = req.getSession(true);
                 session.setAttribute("alunoContratante", aluno);
-                
+         
                 return "WEB-INF/Paginas/secretaria/contratarModulo.jsp";
             } else {
                 req.setAttribute("erro", "usuario não encontrado");
