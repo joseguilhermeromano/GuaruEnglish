@@ -5,7 +5,14 @@
  */
 package com.guaruenglish.servlet;
 
+import com.guaruenglish.dao.AlunoDAO;
+import com.guaruenglish.dao.ContratoDAO;
+import com.guaruenglish.dao.ParcelaDAO;
+import com.guaruenglish.dao.TurmaDAO;
 import com.guaruenglish.model.Aluno;
+import com.guaruenglish.model.Contrato;
+import com.guaruenglish.model.Parcela;
+import com.guaruenglish.model.Turma;
 import java.util.Date;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +26,35 @@ public class FinalizarContrato implements Tarefa {
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
+        
+        
         Aluno aluno = (Aluno) req.getSession().getAttribute("alunoContratante");
+        
         if(aluno.getMatricula() == null) {
             aluno.geraMatricula(new Date());
+            new AlunoDAO().alteraAluno(aluno);
         }
         
+        Turma turma = new TurmaDAO().buscaTurma(Integer.parseInt(req.getParameter("idTurma")));
         
+        Contrato contrato = new Contrato();
+        contrato.setAluno(aluno);
+        contrato.setModulo(turma.getModulo());
+        contrato.setData(new Date());
+        contrato.calculaValorContrato(turma.getModulo().getPreco());
+        contrato.parcelarContrato(Integer.parseInt(req.getParameter("qtdParcelas")));
+        
+        if(new ContratoDAO().cadastrarContrato(contrato)) {
+            req.getSession().removeAttribute("alunoContratante");
+            req.setAttribute("contrato", contrato);
+            
+            for(Parcela p : contrato.getParcelas()) {
+                new ParcelaDAO().cadastrarParcela(p);
+            }
+            return "WEB-INF/Paginas/secretaria/contratoSucesso.jsp";
+        }
+        
+        return "WEB-INF/Paginas/secretaria/pagamentoContrato.jsp";
         
     }
 
