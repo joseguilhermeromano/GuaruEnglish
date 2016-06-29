@@ -13,7 +13,7 @@
         <form action="Acesso" method="post">    
             <input type="hidden" name="tarefa" value="RouteAcessa">
             <input type="hidden" name="action" value="Secretaria">
-            <button type="submit">Ok</button>
+            <button class="btn-default" type="submit">Ok</button>
         </form>
     </body>
 </html>
