@@ -23,14 +23,16 @@ public class ContratoDAO {
 
     EntityManager entityManager = new JPAutil().getEntityManager();
 
-    public void cadastrarContrato(Contrato contrato) {
+    public boolean cadastrarContrato(Contrato contrato) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(contrato);
             entityManager.getTransaction().commit();
             entityManager.close();
-        } catch (RollbackException e) {
+            return true;
+        } catch (Exception e) {
             System.out.println("erro:" + e);
+            return false;
         }
     }
 
