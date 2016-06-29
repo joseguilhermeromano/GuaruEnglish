@@ -5,6 +5,7 @@
  */
 package com.guaruenglish.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -134,6 +135,13 @@ public class Parcela {
      */
     public void setContrato(Contrato contrato) {
         this.contrato = contrato;
+    }
+    
+    public void definirDataDePagamento(int numParcela, Date dataContrato) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dataContrato);
+        cal.set(Calendar.MONTH, Calendar.MONTH + numParcela);
+        this.dataPagamento = cal.getTime();
     }
     
 }
