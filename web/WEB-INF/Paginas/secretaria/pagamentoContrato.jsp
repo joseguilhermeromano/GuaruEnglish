@@ -13,20 +13,19 @@
         <p><b>Valor total do módulo: </b> ${turma.modulo.preco}</p>
         <p><b>Valor a pagar: </b> ${valorContrato}</p>
         
-        
         <label>Forma de pagamento:</label>
-        <select form="confirmaContratacao" name="qtdParcelas">
-            <option value="1"> 1x </option>
-            <option value="2"> 2x </option>
-            <option value="3"> 3x </option>
-            <option value="4"> 4x </option>
-            <option value="5"> 5x </option>
-        </select>
-        <br/><br/>
-        <form action="Executa" method="post" id="confirmarContratacao">
-            <button>Confirmar Contratação</button>
-            <input type="hidden" name="tarefa" value="FinalizarContratacao">
-            <input type="hidden" name="idModulo" value="${turma.modulo.id}">
+        <form action="Executa" method="post">
+            <select name="qtdParcelas">
+                <option value="1" selected> 1x </option>
+                <option value="2"> 2x </option>
+                <option value="3"> 3x </option>
+                <option value="4"> 4x </option>
+                <option value="5"> 5x </option>
+            </select>
+            <br/><br/>
+            <button type="submit">Confirmar Contratação</button>
+            <input type="hidden" name="tarefa" value="FinalizarContrato">
+            <input type="hidden" name="idTurma" value="${turma.id}">
         </form>
         <br/><br/>
         
