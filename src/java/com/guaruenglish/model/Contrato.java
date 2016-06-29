@@ -5,6 +5,8 @@
  */
 package com.guaruenglish.model;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Generated;
@@ -37,7 +39,7 @@ public class Contrato {
     private float valor;
     
     @OneToMany(mappedBy = "contrato")
-    private List<Parcela> parcelas;
+    private List<Parcela> parcelas = new ArrayList<Parcela>();
     
     @ManyToOne()
     @JoinColumn(name = "id_modulo", referencedColumnName = "id")
@@ -154,5 +156,21 @@ public class Contrato {
         this.valor -= this.valor * this.desconto;
         return this.valor;
     }
+    
+    public void parcelarContrato(int qtdParcelas) {
+        for(int i=1 ; i<=qtdParcelas; i++) {
+            Parcela parcela = new Parcela();
+            parcela.setNumParcela(i);
+            parcela.setValor(this.valor);
+            parcela.setStatus(0);
+            parcela.definirDataDePagamento(i , this.data);
+            parcela.setContrato(this);
+            this.parcelas.add(parcela);
+        }
+        
+    }
+    
+      
+    
     
 }
