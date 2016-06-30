@@ -29,7 +29,6 @@ public class Parcela {
     private Date dataPagamento;
     private float valor;
     private int numParcela;
-    private String mesParcela;
     
     @ManyToOne
     @JoinColumn(name = "id_contrato", referencedColumnName = "id")
@@ -110,20 +109,6 @@ public class Parcela {
     }
 
     /**
-     * @return the mesParcela
-     */
-    public String getMesParcela() {
-        return mesParcela;
-    }
-
-    /**
-     * @param mesParcela the mesParcela to set
-     */
-    public void setMesParcela(String mesParcela) {
-        this.mesParcela = mesParcela;
-    }
-
-    /**
      * @return the contrato
      */
     public Contrato getContrato() {
@@ -144,4 +129,7 @@ public class Parcela {
         this.dataPagamento = cal.getTime();
     }
     
+    public void calculaValorParcela(int qtdParcelas) {
+        this.valor = this.contrato.getValor() / qtdParcelas;
+    }
 }
