@@ -79,4 +79,15 @@ public class AlunoDAO {
         }
         return true;
     }
+    
+    public Aluno consultaUltimoAlunoCadastrado() {
+        try {
+            Query query = entityManager.createQuery
+        ("SELECT u FROM Usuario u WHERE u.id = (SELECT MAX(u.id) FROM Usuario)");
+            Aluno aluno = (Aluno) query.getSingleResult();
+            return aluno;
+        } catch(Exception e) {
+            return null;
+        }
+    }
 }
