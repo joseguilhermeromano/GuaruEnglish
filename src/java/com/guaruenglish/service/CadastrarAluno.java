@@ -23,14 +23,14 @@ public class CadastrarAluno implements InterfaceCadastrarUsuario {
         String nome = req.getParameter("nome");
         String userName = req.getParameter("userName");
         String senha = req.getParameter("senha");
-        String cargo = req.getParameter("cargo");
+        String perfilAcesso = req.getParameter("perfilAcesso");
         String cpf = req.getParameter("cpf");
 
         Aluno aluno = new Aluno();
-        aluno.setCargo(cargo);
+        aluno.setCargo(null);
         aluno.setNome(nome);
         aluno.setCpf(cpf);
-        aluno.setPerfilAcesso(cargo);
+        aluno.setPerfilAcesso(perfilAcesso);
         aluno.setStatus(0);
         aluno.setSenha(senha);
         Date senhaData = new Date();
