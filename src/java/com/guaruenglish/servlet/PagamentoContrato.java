@@ -11,6 +11,7 @@ import com.guaruenglish.model.Turma;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,9 +24,8 @@ public class PagamentoContrato implements Tarefa {
         
         Turma turma = new TurmaDAO().buscaTurma(Integer.parseInt(req.getParameter("idTurma")));
         req.setAttribute("turma", turma);
+        
         req.setAttribute("valorContrato", new Contrato().calculaValorContrato(turma.getModulo().getPreco()));
-        
-        
         return "WEB-INF/Paginas/secretaria/pagamentoContrato.jsp";
         
         
