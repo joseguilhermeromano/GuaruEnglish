@@ -43,8 +43,15 @@ public class BoletimDAO {
         }
     }
     
-    public List<Boletim> consultaBoletimTurma(int ) {
-        
+    public List<Boletim> consultaBoletinsTurma(int idTurma) {
+        try {
+            Query query = entityManager.createQuery("SELECT b FROM Boletim b "
+                    + "WHERE b.turma.id='"+idTurma+"'");
+            List<Boletim> boletins = query.getResultList();
+            return boletins;
+        } catch (Exception e ) {
+            return null;
+        }
     }
     
 }
