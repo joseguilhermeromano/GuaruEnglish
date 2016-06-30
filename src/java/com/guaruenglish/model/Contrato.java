@@ -165,6 +165,7 @@ public class Contrato {
             parcela.setStatus(0);
             parcela.definirDataDePagamento(i , this.data);
             parcela.setContrato(this);
+            parcela.calculaValorParcela(qtdParcelas);
             this.parcelas.add(parcela);
         }
         
