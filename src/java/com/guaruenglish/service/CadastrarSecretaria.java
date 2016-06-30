@@ -22,6 +22,7 @@ public class CadastrarSecretaria implements InterfaceCadastrarUsuario {
         String nome = req.getParameter("nome");
         String userName = req.getParameter("userName");
         String senha = req.getParameter("senha");
+        String perfilAcesso = req.getParameter("perfilAcesso");
         String cargo = req.getParameter("cargo");
         String cpf = req.getParameter("cpf");
         
@@ -29,7 +30,7 @@ public class CadastrarSecretaria implements InterfaceCadastrarUsuario {
         secretaria.setCargo(cargo);
         secretaria.setNome(nome);
         secretaria.setCpf(cpf);
-        secretaria.setPerfilAcesso(cargo);
+        secretaria.setPerfilAcesso(perfilAcesso);
         secretaria.setStatus(1);
         secretaria.setSenha(senha);
         Date senhaData = new Date();
