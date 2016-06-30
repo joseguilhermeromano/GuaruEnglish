@@ -3,7 +3,7 @@
     Created on : 25/06/2016, 15:58:06
     Author     : Luiz Felipe
 --%>
-<jsp:include page="/templates/header.jsp"/>
+<!--jsp:include page="/templates/header.jsp"/-->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
 
                         <li class="dropdown"><a href="<c:url value="Executa">
                                                 <c:param name="tarefa" value="CadastrarTurma">
-                                                </c:param></c:url>">Cadastrar Turmas</a> </li>
+                                                </c:param></c:url>">Cadastrar Turmas</a></li>
 
                         <li class="dropdown"><a href="<c:url value="Executa">
                                                 <c:param name="tarefa" value="consultarTurmas">
