@@ -22,7 +22,7 @@ public class CadastrarUsuario implements Tarefa {
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
 
-        String tipoUsuario = req.getParameter("cargo");
+        String tipoUsuario = req.getParameter("perfilAcesso");
         tipoUsuario = "com.guaruenglish.service.Cadastrar" + tipoUsuario;
 
         try {
