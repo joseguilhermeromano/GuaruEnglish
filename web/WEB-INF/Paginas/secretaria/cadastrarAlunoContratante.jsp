@@ -16,6 +16,7 @@
             <label>CPF: </label><input type="text" name="cpf"><br/><br/>
             <input type="hidden" name="tarefa" value="CadastrarAlunoContratante">
             <input class="btn-default" type="submit" value="Cadastrar">
+            <input type="hidden" value="Aluno" name="perfilAcesso">
         </form>
     </body>
 </html>
