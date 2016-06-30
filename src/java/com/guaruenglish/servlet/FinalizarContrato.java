@@ -6,10 +6,12 @@
 package com.guaruenglish.servlet;
 
 import com.guaruenglish.dao.AlunoDAO;
+import com.guaruenglish.dao.BoletimDAO;
 import com.guaruenglish.dao.ContratoDAO;
 import com.guaruenglish.dao.ParcelaDAO;
 import com.guaruenglish.dao.TurmaDAO;
 import com.guaruenglish.model.Aluno;
+import com.guaruenglish.model.Boletim;
 import com.guaruenglish.model.Contrato;
 import com.guaruenglish.model.Parcela;
 import com.guaruenglish.model.Turma;
@@ -32,8 +34,10 @@ public class FinalizarContrato implements Tarefa {
         
         if(aluno.getMatricula() == null) {
             aluno.geraMatricula(new Date());
-            new AlunoDAO().alteraAluno(aluno);
+            
         }
+        aluno.setStatus(1);
+        new AlunoDAO().alteraAluno(aluno);
         
         Turma turma = new TurmaDAO().buscaTurma(Integer.parseInt(req.getParameter("idTurma")));
         
@@ -45,15 +49,19 @@ public class FinalizarContrato implements Tarefa {
         contrato.parcelarContrato(Integer.parseInt(req.getParameter("qtdParcelas")));
         
         if(new ContratoDAO().cadastrarContrato(contrato)) {
-            req.getSession().removeAttribute("alunoContratante");
-            req.setAttribute("contrato", contrato);
             
+            //Já cria um boletim para o aluno correspondente a turma escolhida no ato da contratação.
+            Boletim boletim = new Boletim();
+            boletim.setAluno(aluno);
+            boletim.setTurma(turma);
+            new BoletimDAO().insereBoletim(boletim);
+            
+            req.setAttribute("contrato", contrato);
             for(Parcela p : contrato.getParcelas()) {
                 new ParcelaDAO().cadastrarParcela(p);
             }
             return "WEB-INF/Paginas/secretaria/contratoSucesso.jsp";
         }
-        
         return "WEB-INF/Paginas/secretaria/pagamentoContrato.jsp";
         
     }
