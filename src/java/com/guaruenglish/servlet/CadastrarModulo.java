@@ -35,6 +35,8 @@ public class CadastrarModulo implements Tarefa {
             int duracao = Integer.parseInt(req.getParameter("duracao"));
             int id_curso = Integer.parseInt(req.getParameter("curso"));
 
+            
+            
             Curso curso = new CursoDAO().consultaCurso(id_curso);
             Modulo modulo = new Modulo();
             modulo.setConteudoBasico(conteudoBasico);

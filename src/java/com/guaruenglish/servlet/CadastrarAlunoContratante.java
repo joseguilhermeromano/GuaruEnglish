@@ -6,7 +6,7 @@
 package com.guaruenglish.servlet;
 
 import com.guaruenglish.dao.AlunoDAO;
-import com.guaruenglish.service.CadastrarAluno;
+import com.guaruenglish.service.AlunoService;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -21,10 +21,8 @@ public class CadastrarAlunoContratante implements Tarefa {
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
-        CadastrarAluno novoAluno = new CadastrarAluno();
+        AlunoService novoAluno = new AlunoService();
         if(novoAluno.cadastrar(req, resp)) {
-            
-            System.out.println("Ultimo aluno: " + new AlunoDAO().consultaUltimoAlunoCadastrado().getNome());
             
             HttpSession session = req.getSession(true);
             session.setAttribute("alunoContratante", new AlunoDAO().consultaUltimoAlunoCadastrado());
@@ -32,7 +30,6 @@ public class CadastrarAlunoContratante implements Tarefa {
         } else {
             return "WEB-INF/Paginas/secretaria/cadastrarAlunoContratante.jsp";
         }
-        
     }
 
     @Override

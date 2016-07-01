@@ -6,6 +6,8 @@
 package com.guaruenglish.servlet;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -27,12 +29,14 @@ public class Controller extends HttpServlet {
         String tarefa = req.getParameter("tarefa");
                 
         tarefa = "com.guaruenglish.servlet." + tarefa;
+        String nomeMetodo = (req.getParameter("metodo") == null) ? "executa" : req.getParameter("metodo");
         
         try {
             Class<?> tipo = Class.forName(tarefa);
             Tarefa instancia = (Tarefa) tipo.newInstance();
             
-            String pagina = instancia.executa(req, resp);
+            Method metodo = tipo.getDeclaredMethod(nomeMetodo, HttpServletRequest.class, HttpServletResponse.class);
+            String pagina = (String) metodo.invoke(instancia, req,resp);
             
             RequestDispatcher requestDispatcher = req.getRequestDispatcher(pagina);
             requestDispatcher.forward(req, resp);
@@ -42,6 +46,14 @@ public class Controller extends HttpServlet {
         } catch (InstantiationException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    

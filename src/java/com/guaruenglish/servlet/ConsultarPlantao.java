@@ -11,7 +11,6 @@ import com.guaruenglish.dao.UsuarioDAO;
 import com.guaruenglish.model.PlantaoDuvida;
 import com.guaruenglish.model.Professor;
 import com.guaruenglish.model.Usuario;
-import com.guaruenglish.service.InterfaceCadastrarUsuario;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +19,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import com.guaruenglish.service.UsuarioService;
 
 /**
  *

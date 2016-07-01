@@ -5,13 +5,13 @@
  */
 package com.guaruenglish.servlet;
 
-import com.guaruenglish.service.InterfaceCadastrarUsuario;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.guaruenglish.service.UsuarioService;
 
 /**
  *
@@ -23,12 +23,12 @@ public class CadastrarUsuario implements Tarefa {
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
 
         String tipoUsuario = req.getParameter("perfilAcesso");
-        tipoUsuario = "com.guaruenglish.service.Cadastrar" + tipoUsuario;
+        tipoUsuario = "com.guaruenglish.service." + tipoUsuario + "Service";
 
         try {
             Class<?> tipo = Class.forName(tipoUsuario);
-            InterfaceCadastrarUsuario instacia
-                    = (InterfaceCadastrarUsuario) tipo.newInstance();
+            UsuarioService instacia
+                    = (UsuarioService) tipo.newInstance();
 
             if (instacia.cadastrar(req, resp)) {
                 return "WEB-INF/Paginas/secretaria/cadastrarUsuarioSucesso.jsp";
