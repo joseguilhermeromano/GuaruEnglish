@@ -39,13 +39,15 @@ public class ModuloDAO {
             return null;
         }
     }
-    public void alteraModulo(Modulo modulo) {
+    public boolean alteraModulo(Modulo modulo) {
         try {
             entityManager.getTransaction().begin();
             entityManager.merge(modulo);
             entityManager.getTransaction().commit();
+            return true;
         } catch(Exception ex) {
             entityManager.getTransaction().rollback();
+            return false;
         }
     }
      
@@ -68,6 +70,16 @@ public class ModuloDAO {
             List<Modulo> modulos = query.getResultList();
             return modulos;
         } catch(NoResultException ex) {
+            return null;
+        }
+    }
+    
+    public List<Modulo> buscaModulos() {
+        try {
+            Query query = entityManager.createQuery("FROM Modulo m");
+            List<Modulo> modulos = query.getResultList();
+            return modulos;
+        } catch(Exception e ) {
             return null;
         }
     }
