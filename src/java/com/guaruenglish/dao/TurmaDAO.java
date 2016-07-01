@@ -75,4 +75,15 @@ public class TurmaDAO {
         }
         return true;
     }
+    
+    public List<Turma> buscarTurmasAtivadasSemProfessor() {
+        try {
+            Query query = entityManager.createQuery
+        ("SELECT t FROM Turma t WHERE t.professor.id=NULL and t.status = 1");
+            List<Turma> turmas = query.getResultList();
+            return turmas;
+        } catch(Exception e) {
+            return null;
+        }
+    }
 }
