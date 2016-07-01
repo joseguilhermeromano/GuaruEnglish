@@ -7,6 +7,7 @@ package com.guaruenglish.dao;
 
 import com.guaruenglish.model.Professor;
 import com.guaruenglish.util.JPAutil;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -56,5 +57,27 @@ public class ProfessorDAO {
             return false;
         }
     }
+    
+    public List<Professor> buscaProfessores() {
+        try {
+            Query query = entityManager.createQuery("SELECT p FROM Professor p");
+            List<Professor> professores = query.getResultList();
+            return professores;
+        } catch(Exception e) {
+            return null;
+        }
+    }
+    
+    public List<Professor> buscaProfessoresHorarioDisponivel() {
+        try {
+            Query query = entityManager.createQuery
+        ("SELECT p FROM Professor p WHERE p.cargaHoririaDisponivel <> 0");
+            List<Professor> professores = query.getResultList();
+            return professores;
+        } catch(Exception e) {
+            return null;
+        }
+    }
+    
     
 }
