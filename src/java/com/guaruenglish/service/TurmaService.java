@@ -44,7 +44,12 @@ public class TurmaService {
     public Turma consultaTurma(int id) {
         return new TurmaDAO().buscaTurma(id);
     }
-
+    
+    public List<Turma> listaTurmas() {
+        return new TurmaDAO().buscaTurmas();
+    }
+    
+    
     private Object TurmaDAO() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
