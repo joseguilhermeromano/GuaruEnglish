@@ -30,13 +30,14 @@ public class Controller extends HttpServlet {
                 
         tarefa = "com.guaruenglish.servlet." + tarefa;
         String nomeMetodo = (req.getParameter("metodo") == null) ? "executa" : req.getParameter("metodo");
-        
+        System.out.println("nome método:" + nomeMetodo);
         try {
             Class<?> tipo = Class.forName(tarefa);
             Tarefa instancia = (Tarefa) tipo.newInstance();
             
             Method metodo = tipo.getDeclaredMethod(nomeMetodo, HttpServletRequest.class, HttpServletResponse.class);
             String pagina = (String) metodo.invoke(instancia, req,resp);
+            System.out.println("Pagina: " + pagina);
             
             RequestDispatcher requestDispatcher = req.getRequestDispatcher(pagina);
             requestDispatcher.forward(req, resp);
