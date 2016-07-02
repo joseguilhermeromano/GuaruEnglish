@@ -22,24 +22,58 @@ public class TurmaServlet implements Tarefa {
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
-        return "";
+        List<Turma> turmas = new TurmaService().listaTurmas();
+        req.setAttribute("turmas", turmas);
+        return "WEB-INF/Paginas/secretaria/curso/listaTurmas.jsp";
     }
     
     public String exibeTurmasSemProfessor(HttpServletRequest req, HttpServletResponse resp) {
         List<Turma> turmas = new TurmaService().consultarTurmasSemProfessor();
         req.setAttribute("turmas", turmas);
-        return "WEB-INF/Paginas/secretaria/curso/turmaSemProfessor.jsp";
+        return "WEB-INF/Paginas/secretaria/curso/turmaSemProfessor.jsp";     
     }
     
     public String definirProfessorParaTurma(HttpServletRequest req, HttpServletResponse resp) {
         int idTurma = Integer.parseInt(req.getParameter("idTurma"));
+        
         Turma turma = new TurmaService().consultaTurma(idTurma);
-        // estou usando professor dao pois não há ainda professor service
+        //estou usando professor dao pois não há ainda professor service
         List<Professor> professores = new ProfessorDAO().buscaProfessores();
         req.setAttribute("turma", turma);
         req.setAttribute("professores", professores);
         
         return "WEB-INF/Paginas/secretaria/curso/definirProfessorTurma.jsp";
+    }
+    
+    
+    public String associarProfessorTurma(HttpServletRequest req, HttpServletResponse resp) {
+        int idProfessor = Integer.parseInt(req.getParameter("idProfessor"));
+        int idTurma = Integer.parseInt(req.getParameter("idTurma"));
+        
+        boolean resposta = new TurmaService().associaProfessorTurma(idProfessor, idTurma);
+        if(resposta) {
+            req.setAttribute("turma", new TurmaService().consultaTurma(idTurma));
+            return "WEB-INF/Paginas/secretaria/curso/professorTurmaSucesso.jsp";
+        } else 
+            return "WEB-INF/Paginas/secretaria/curso/definirProfessorTurma.jsp";
+    }
+    
+    public String view(HttpServletRequest req, HttpServletResponse resp) {
+        int idTurma = Integer.parseInt(req.getParameter("idTurma"));
+        Turma turma = new TurmaService().consultaTurma(idTurma);
+        req.setAttribute("turma", turma);
+        return "WEB-INF/Paginas/secretaria/curso/turma.jsp";
+    }
+    
+    
+    public String editar(HttpServletRequest req, HttpServletResponse resp) {
+        int idTurma = Integer.parseInt(req.getParameter("idTurma"));
+        Turma turma = new TurmaService().consultaTurma(idTurma);
+        if(turma != null) {
+            req.setAttribute("turma", turma);
+        }
+            
+        return "";
     }
     
     
