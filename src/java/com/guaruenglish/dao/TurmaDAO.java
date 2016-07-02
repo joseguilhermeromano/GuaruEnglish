@@ -86,4 +86,14 @@ public class TurmaDAO {
             return null;
         }
     }
+    
+    public List<Turma> buscaTurmas() {
+        try {
+            Query query = entityManager.createQuery("SELECT t FROM Turma t");
+            List<Turma> turmas = query.getResultList();
+            return turmas;
+        } catch(Exception e) {
+            return null;
+        }
+    }
 }
