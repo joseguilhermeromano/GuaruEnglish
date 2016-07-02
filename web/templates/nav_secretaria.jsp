@@ -49,14 +49,15 @@
 
                     <li class="dropdown">
                         <a href="<c:url value="Executa">
-                            <c:param name="tarefa" value="consultarTurmas">
+                            <c:param name="tarefa" value="TurmaServlet">
                             </c:param></c:url>">Consultar Turmas
                         </a>
                     </li>
                     <li class="dropdown">
                         <a href="<c:url value="Executa">
-                            <c:param name="tarefa" value="consultarTurmas">
-                            </c:param></c:url>">Definir Professor para Turma
+                            <c:param name="tarefa" value="TurmaServlet"></c:param>
+                            <c:param name="metodo" value="exibeTurmasSemProfessor"></c:param>
+                            </c:url>">Definir Professor para Turma
                         </a>
                     </li>
                     
