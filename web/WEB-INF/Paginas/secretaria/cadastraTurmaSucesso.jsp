@@ -10,10 +10,11 @@
     <body>
         <jsp:include page="/templates/nav_secretaria.jsp"></jsp:include>
         <h1>A Turma foi cadastrada com sucesso.</h1>
-        <form action="Acesso" method="post">    
-            <input type="hidden" name="tarefa" value="RouteAcessa">
-            <input type="hidden" name="action" value="Secretaria">
-            <button class="btn-default" type="submit">Ok</button>
+        
+        <form action="Executa" method="post">    
+            <input type="hidden" name="tarefa" value="TurmaServlet">
+            <input type="hidden" name="action" value="executa">
+            <button class="btn btn-default" type="submit">Ok</button>
         </form>
     </body>
 </html>
