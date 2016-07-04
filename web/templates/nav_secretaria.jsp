@@ -80,21 +80,43 @@
                                <c:param name="tarefa" value="RouteAcessa"></c:param>
                                <c:param name="action" value="cadastrarUsuario"></c:param>
                            </c:url>">Cadastra Usuário</a></li>
-
+                            
                     <li><a href="<c:url value="Executa">
                                <c:param name="tarefa" value="ConsultarUsuarios"></c:param>
                            </c:url>">Consultar Usuários</a></li>
                     </ul>
                 </li>
-
-            <li><a href="<c:url value="Executa">
-                       <c:param name="tarefa" value="RealizarContratacao"></c:param>
-                   </c:url>">
-                    Realizar Contratação</a></li>
-            <li><a href="<c:url value="Executa">
-                       <c:param name="tarefa" value="Logoff"></c:param>
-                   </c:url>">Logoff</a></li>
-
+                
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Contratos
+                        <span class="caret"></span>
+                    </a>
+                    
+                    <ul class="dropdown-menu">
+                        <li class="dropdown">
+                            <a href="<c:url value="Executa">
+                                <c:param name="tarefa" value="RealizarContratacao"></c:param>
+                                </c:url>">
+                                Realizar Contratação
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="<c:url value="Executa">
+                                   <c:param name="tarefa" value="ContratoServlet"/>
+                               </c:url>">
+                                Consultar Contrato
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+                <li>
+                    <a href="<c:url value="Executa">
+                        <c:param name="tarefa" value="Logoff"></c:param>
+                        </c:url>">
+                        Logoff
+                    </a>
+                </li>
         </ul>
         </li>  
         </ul>
