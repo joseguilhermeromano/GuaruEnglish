@@ -9,6 +9,9 @@ import com.guaruenglish.dao.ProfessorDAO;
 import com.guaruenglish.model.Professor;
 import com.guaruenglish.model.Turma;
 import com.guaruenglish.service.TurmaService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -72,8 +75,26 @@ public class TurmaServlet implements Tarefa {
         if(turma != null) {
             req.setAttribute("turma", turma);
         }
-            
-        return "";
+        return "WEB-INF/Paginas/secretaria/curso/editarTurma.jsp";
+    }
+    
+    
+    public String atualizar(HttpServletRequest req, HttpServletResponse resp) throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        int idTurma = Integer.parseInt(req.getParameter("idTurma"));
+        Date dataInicio =  df.parse(req.getParameter("dataInicio"));
+        Date dataFim = df.parse(req.getParameter("dataFim"));
+        String periodo = req.getParameter("periodo");
+        
+        boolean resposta = new TurmaService().atualizar(idTurma,dataInicio,dataFim, periodo);
+        if(resposta) {
+           return this.view(req, resp);
+        }
+        else {
+            req.setAttribute("erroAtualizar", "Não foi possivel atualizar a turma.\n"
+                    + "Verifique se a data de inicio não ultrapassa a data de fim.");
+            return this.editar(req, resp);
+        }
     }
     
     
