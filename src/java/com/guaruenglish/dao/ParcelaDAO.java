@@ -7,6 +7,7 @@ package com.guaruenglish.dao;
 
 import com.guaruenglish.model.Parcela;
 import com.guaruenglish.util.JPAutil;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -31,12 +32,22 @@ public class ParcelaDAO {
         }
     }
 
-    public Parcela buscaParcelaIdContrato(int id_contrato) {
+    public List<Parcela> buscaParcelaIdContrato(int id_contrato) {
         try {
-            Query query = entityManager.createQuery("SELECT c From Parcela c WHERE c.id_contrato'" + id_contrato + "'");
-            Parcela parcela = (Parcela) query.getResultList();
+            Query query = entityManager.createQuery("SELECT p From Parcela p WHERE p.contrato.id='" + id_contrato + "'");
+            List<Parcela> parcela = query.getResultList();
             return parcela;
         } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public Parcela buscaParcela(int id) {
+        try {
+            Query query = entityManager.createQuery("SELECT p FROM Parcela p WHERE p.id='"+id+"'");
+            Parcela parcela = (Parcela) query.getSingleResult();
+            return parcela;
+        } catch(Exception e) {
             return null;
         }
     }
