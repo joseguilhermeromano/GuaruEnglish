@@ -48,13 +48,13 @@ public class BoletimServlet implements Tarefa {
        String[] parcial = req.getParameterValues("parcial");
        String[] notasfinais = req.getParameterValues("final");
        String[] faltas = req.getParameterValues("faltas");  
-       String[] id= req.getParameterValues("id");
+       String[] id = req.getParameterValues("id");
        Boletim boletim = new Boletim();
-       Boletim boletim2 = new Boletim();
+       
        for(int i = 0; i < parcial.length; i++){
-           int idBoletim = Integer.parseInt(parcial[i]);
+           int idBoletim = Integer.parseInt(id[i]);
            int faltasC = Integer.parseInt(faltas[i]);
-           float parcialD = Integer.parseInt(parcial[i]);
+           float parcialD = Float.parseFloat(parcial[i]);
            float finalD = Float.parseFloat(notasfinais[i]);
            
            boletim.setId(idBoletim);
@@ -68,6 +68,8 @@ public class BoletimServlet implements Tarefa {
        }
        return "WEB-INF/Paginas/professor/definirBoletim.jsp";
     }
+    
+    
     @Override
      public Map perfil() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

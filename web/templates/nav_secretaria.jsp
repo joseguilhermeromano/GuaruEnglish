@@ -38,15 +38,12 @@
                             </c:url>">Atualizar Módulo 
                         </a>
                     </li>
-                    
-
                     <li class="dropdown">
                         <a href="<c:url value="Executa">
                             <c:param name="tarefa" value="CadastrarTurma">
                             </c:param></c:url>">Cadastrar Turmas
                             </a>
                     </li>
-
                     <li class="dropdown">
                         <a href="<c:url value="Executa">
                             <c:param name="tarefa" value="TurmaServlet">
@@ -109,7 +106,24 @@
                             </a>
                         </li>
                     </ul>
-                </li>    
+                </li>
+                <li>
+                    <a href="<c:url value="Executa">
+                        <c:param name="tarefa" value="DeclaracaoServlet"></c:param>
+                        <c:param name="metodo" value="declaracoesNaoAnalisadas"></c:param>
+                        </c:url>">
+                        Declarações
+                    </a>
+                </li>
+                <li>
+                    <a href="<c:url value="Executa">
+                        <c:param name="tarefa" value="PlantaoServlet"></c:param>
+                        <c:param name="metodo" value="professorPlantao"></c:param>
+                        </c:url>">
+                        Plantões
+                    </a>
+                </li>
+                
                 <li>
                     <a href="<c:url value="Executa">
                         <c:param name="tarefa" value="Logoff"></c:param>

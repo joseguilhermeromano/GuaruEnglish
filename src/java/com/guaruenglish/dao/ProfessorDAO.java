@@ -71,7 +71,7 @@ public class ProfessorDAO {
     public List<Professor> buscaProfessoresHorarioDisponivel() {
         try {
             Query query = entityManager.createQuery
-        ("SELECT p FROM Professor p WHERE p.cargaHoririaDisponivel <> 0");
+        ("SELECT p FROM Professor p WHERE p.cargaHorariaDisponivel != 0");
             List<Professor> professores = query.getResultList();
             return professores;
         } catch(Exception e) {

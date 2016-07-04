@@ -21,7 +21,7 @@
             <input class="btn-default" type="text" name="idTurma" value="">
             <input type="hidden" name="tarefa" value="BoletimServlet">
             <input type="hidden" name="metodo" value="consultaBoletinsTurma">
-            <button form="consultaBoletim" class="btn-warning" type="submit">Consultar</button>
+            <button form="consultaBoletim" class="btn btn-primary" type="submit">Consultar</button>
         </form>
 
         <hr>
@@ -39,7 +39,7 @@
                     </tr>
                     <c:forEach var="boletim" items="${boletim}">
                         <tr>
-                            <td><input type="number" name="id" value="${boletim.id}">${boletim.id}</label> </td>
+                            <td><input type="number" name="id" value="${boletim.id}">${boletim.id} </td>
                             <td><label type="text" name="matricula" value="${boletim.aluno.matricula}">${boletim.aluno.matricula}</label>  </td>
                             <td><label type="text" name="nome" value="${boletim.aluno.nome}">${boletim.aluno.nome}</label>  </td>
                             <td><input type="number" name="parcial" value="${boletim.conceitoParcial}"> </td>

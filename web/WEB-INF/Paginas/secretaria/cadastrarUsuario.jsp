@@ -30,9 +30,9 @@
             <label>Especialidade do Professor:</label>
             <input type="text" name="especialidade" form="formCadastra"><br/><br/>
             <label>Nível de experiênia:</label><br/>
-            <input type="radio" name="experiencia" value="baixo" form="formCadastra">baixo<br/>
-            <input type="radio" name="experiencia" value="médio" form="formCadastra">médio<br/>
-            <input type="radio" name="experiencia" value="avançado" form="formCadastra">avançado<br/>
+            <input type="radio" name="experiencia" value="1" form="formCadastra">baixo<br/>
+            <input type="radio" name="experiencia" value="2" form="formCadastra">médio<br/>
+            <input type="radio" name="experiencia" value="3" form="formCadastra">avançado<br/>
             <label>Carga Horária: </label><input type="text" name="cargaHoraria" form="formCadastra">
         </div>
         <br/>

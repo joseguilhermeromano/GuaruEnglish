@@ -22,9 +22,9 @@ import javax.persistence.Table;
 public class Professor extends Usuario {
     
     private float cargaHoraria;
-    private float cargaHoririaDisponivel;
+    private float cargaHorariaDisponivel;
     private String especialidade;
-    private String nivelExperiencia;
+    private int nivelExperiencia;
     
     @OneToMany(mappedBy = "professor")
     private List<Turma> turmas;
@@ -52,17 +52,17 @@ public class Professor extends Usuario {
     }
 
     /**
-     * @return the cargaHoririaDisponivel
+     * @return the cargaHorariaDisponivel
      */
-    public float getCargaHoririaDisponivel() {
-        return cargaHoririaDisponivel;
+    public float getCargaHorariaDisponivel() {
+        return cargaHorariaDisponivel;
     }
 
     /**
-     * @param cargaHoririaDisponivel the cargaHoririaDisponivel to set
+     * @param cargaHoririaDisponivel the cargaHorariaDisponivel to set
      */
-    public void setCargaHoririaDisponivel(float cargaHoririaDisponivel) {
-        this.cargaHoririaDisponivel = cargaHoririaDisponivel;
+    public void setCargaHorariaDisponivel(float cargaHoririaDisponivel) {
+        this.cargaHorariaDisponivel = cargaHoririaDisponivel;
     }
 
     /**
@@ -82,14 +82,14 @@ public class Professor extends Usuario {
     /**
      * @return the nivelExperiencia
      */
-    public String getNivelExperiencia() {
+    public int getNivelExperiencia() {
         return nivelExperiencia;
     }
 
     /**
      * @param nivelExperiencia the nivelExperiencia to set
      */
-    public void setNivelExperiencia(String nivelExperiencia) {
+    public void setNivelExperiencia(int nivelExperiencia) {
         this.nivelExperiencia = nivelExperiencia;
     }
 
@@ -121,5 +121,8 @@ public class Professor extends Usuario {
         this.plantoes = plantoes;
     }
     
+    public void calculaHorarioDisponivel(int qtdHorasAulaSemanal) {
+        this.cargaHorariaDisponivel -= qtdHorasAulaSemanal;
+    }
     
 }

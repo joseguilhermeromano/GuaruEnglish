@@ -31,11 +31,19 @@ public class TurmaService {
         Professor professor = new ProfessorDAO().buscaProfessor(idProfessor);
         Turma turma = new TurmaDAO().buscaTurma(idTurma);
         
-        //Falta Colocar a condição para verficar se o professor pode lecionar essa turma.
-        // para isso é melhor trocar o nivel de experiencia do professor para int
+        //professor sem carga horaria disponivel
+        if(professor.getCargaHorariaDisponivel() == 0)
+            return false;
+        
+        //professor não possui nivel de experiência para ministrar modulos avançados
+        if(turma.getModulo().getNivel() == 3 && professor.getNivelExperiencia() < 3) {
+            return false;
+        }
+        
+        professor.calculaHorarioDisponivel(turma.getQtdAulas());
+        new ProfessorDAO().alteraProfessor(professor);
         
         turma.setProfessor(professor);
-        
         boolean resposta = new TurmaDAO().alteraTurma(turma);
         
         return resposta;    

@@ -8,6 +8,7 @@ package com.guaruenglish.service;
 import com.guaruenglish.dao.ProfessorDAO;
 import com.guaruenglish.model.Professor;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,13 +25,13 @@ public class ProfessorService implements UsuarioService {
         String senha = req.getParameter("senha");
         String cargo = req.getParameter("cargo");
         String especialidade = req.getParameter("especialidade");
-        String nivelExperiencia = req.getParameter("experiencia");
+        int nivelExperiencia = Integer.parseInt(req.getParameter("experiencia"));
         float cargaHoraria = Float.parseFloat(req.getParameter("cargaHoraria"));
         String cpf = req.getParameter("cpf");
         
-        
         Professor professor = new Professor();
         professor.setCargaHoraria(cargaHoraria);
+        professor.setCargaHorariaDisponivel(cargaHoraria);
         professor.setCargo(cargo);
         professor.setCpf(cpf);
         professor.setNivelExperiencia(nivelExperiencia);
@@ -47,5 +48,13 @@ public class ProfessorService implements UsuarioService {
         return new ProfessorDAO().cadastrarProfessor(professor);
         
     }
+    
+    public List<Professor> consultaProfessorHorarioDisponivel() {
+        return new ProfessorDAO().buscaProfessoresHorarioDisponivel();
+    }
+    
+    
+    
+    
     
 }

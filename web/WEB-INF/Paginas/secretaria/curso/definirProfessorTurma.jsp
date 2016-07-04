@@ -30,18 +30,25 @@
                     <c:forEach var="professor" items="${professores}">
                         <option value="${professor.id}"> 
                             Professor: ${professor.nome} - 
-                            Nível de Experiencia: ${professor.nivelExperiencia}
+                            Nível de Experiencia: 
+                            <c:if test="${professor.nivelExperiencia eq 1}">Baixo</c:if>
+                            <c:if test="${professor.nivelExperiencia eq 2}">Médio</c:if>
+                            <c:if test="${professor.nivelExperiencia eq 3}">Alto</c:if>
                         </option>
                     </c:forEach>
                 </select>
             </div>
-
+            
             <form action="Executa" method="post" id="associarProfessor">
                 <button class="btn btn-primary">Associar Professor a Turma!</button>
                 <input type="hidden" name="tarefa" value="TurmaServlet">
                 <input type="hidden" name="metodo" value="associarProfessorTurma">
                 <input type="hidden" name="idTurma" value="${turma.id}">
             </form>
+            
+            <c:if test="${not empty falhaAssociarProfessor}">
+                <br><p class="alert alert-danger col-md-7">${falhaAssociarProfessor}</p>
+            </c:if>
         </div>
     </body>
 </html>

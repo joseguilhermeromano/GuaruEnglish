@@ -48,7 +48,6 @@ public class TurmaServlet implements Tarefa {
         return "WEB-INF/Paginas/secretaria/curso/definirProfessorTurma.jsp";
     }
     
-    
     public String associarProfessorTurma(HttpServletRequest req, HttpServletResponse resp) {
         int idProfessor = Integer.parseInt(req.getParameter("idProfessor"));
         int idTurma = Integer.parseInt(req.getParameter("idTurma"));
@@ -57,8 +56,12 @@ public class TurmaServlet implements Tarefa {
         if(resposta) {
             req.setAttribute("turma", new TurmaService().consultaTurma(idTurma));
             return "WEB-INF/Paginas/secretaria/curso/professorTurmaSucesso.jsp";
-        } else 
-            return "WEB-INF/Paginas/secretaria/curso/definirProfessorTurma.jsp";
+        } else {
+            req.setAttribute("falhaAssociarProfessor", "Ocorreu um erro na "
+                    + "tentativa de definir um professor para a turma."
+                    + "<br>Verifique se o professor possui nivel de experiência adequado");
+            return this.definirProfessorParaTurma(req, resp);
+        }
     }
     
     public String view(HttpServletRequest req, HttpServletResponse resp) {

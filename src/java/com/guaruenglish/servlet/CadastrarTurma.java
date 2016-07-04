@@ -42,6 +42,12 @@ public class CadastrarTurma implements Tarefa {
                 String periodo = req.getParameter("periodo");
                 int idModulo = Integer.parseInt(req.getParameter("modulo"));
                 
+                
+                
+                if(dataInicio.compareTo(dataFim) >= 0 || dataInicio.compareTo(new Date()) < 0){
+                    return "WEB-INF/Paginas/secretaria/cadastrarTurma.jsp";
+                }
+                
                 Turma turma = new Turma();
                 turma.setModulo(new ModuloDAO().buscaModulo(idModulo));
                 turma.setDataFim(dataFim);

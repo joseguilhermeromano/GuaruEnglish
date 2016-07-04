@@ -5,6 +5,7 @@
  */
 package com.guaruenglish.model;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,6 +25,7 @@ public class Declaracao {
     private int status;
     private String descricao;
     private String motivo;
+    private Date data;
     
     @ManyToOne
     @JoinColumn(name = "id_contrato", referencedColumnName = "id")
@@ -101,6 +103,20 @@ public class Declaracao {
      */
     public void setContrato(Contrato contrato) {
         this.contrato = contrato;
+    }
+
+    /**
+     * @return the data
+     */
+    public Date getData() {
+        return data;
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(Date data) {
+        this.data = data;
     }
     
     
