@@ -30,7 +30,7 @@
             <label>Data Termino: </label><input type="date" name="dataFim"><br/><br/>
             <label>Período: </label>
             <select name="periodo"><br/><br/>
-                <option value="manutino">matutino</option>
+                <option value="matutino">matutino</option>
                 <option value="vespertino">vespertino</option>
                 <option value="noturno">noturno</option>
             </select><br/><br/>
