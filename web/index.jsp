@@ -10,7 +10,7 @@
 <body>
         <h1>GuaruEnglish:</h1>
         <h3>Login:</h3>
-        <form action="Executa" method="post">
+        <form action="Executa" method="post" class="fo">
             <label>UserName:</label><input type="text" name="userName">
             <label>Senha:</label><input type="password" name="senha">
             <input type="submit">
