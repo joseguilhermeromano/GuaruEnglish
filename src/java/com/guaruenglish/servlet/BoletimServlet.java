@@ -7,6 +7,7 @@
 package com.guaruenglish.servlet;
 
 import com.guaruenglish.model.Boletim;
+import com.guaruenglish.model.Usuario;
 import com.guaruenglish.service.BoletimService;
 import com.guaruenglish.util.JPAutil;
 import java.io.IOException;
@@ -41,6 +42,14 @@ public class BoletimServlet implements Tarefa {
         //session.setAttribute("tdefinirBoletimurma", turma);
         req.setAttribute("boletim", boletim);    
         return "WEB-INF/Paginas/professor/definirBoletim.jsp";
+    }
+    
+    public String consultaBoletinsAluno(HttpServletRequest req, HttpServletResponse resp){
+        HttpSession session = req.getSession();
+        Usuario usr = (Usuario) session.getAttribute("usuarioLogado");
+        List<Boletim> boletim = new BoletimService().consultaBoletinsAluno(usr.getId());
+        req.setAttribute("boletim", boletim); 
+        return "WEB-INF/Paginas/aluno/boletim.jsp";
     }
     
     public String alteraBoletim(HttpServletRequest req,

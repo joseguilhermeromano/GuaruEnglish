@@ -55,18 +55,29 @@ public class BoletimDAO {
         try {
             Query query = entityManager.createQuery("SELECT b FROM Boletim b "
                     + "WHERE b.turma.id='" + idTurma + "' "
-                    + "AND b.aluno.id='" + idAluno + "'");
+                    + "OR b.aluno.id='" + idAluno + "'");
             Boletim boletim = (Boletim) query.getSingleResult();
             return boletim;
         } catch (Exception e) {
             return null;
         }
     }
+    
 
     public List<Boletim> consultaBoletinsTurma(int idTurma) {
         try {
             Query query = entityManager.createQuery("SELECT b FROM Boletim b "
                     + "WHERE b.turma.id=" + idTurma + "");
+            List<Boletim> boletins = query.getResultList();
+            return boletins;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public List<Boletim> consultaBoletinsAluno(int idAluno) {
+        try {
+            Query query = entityManager.createQuery("SELECT b FROM Boletim b "
+                    + "WHERE b.aluno.id=" + idAluno + "");
             List<Boletim> boletins = query.getResultList();
             return boletins;
         } catch (Exception e) {
