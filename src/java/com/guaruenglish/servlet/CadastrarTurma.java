@@ -50,9 +50,10 @@ public class CadastrarTurma implements Tarefa {
                 turma.setStatus(1);
                 turma.calculaQtdAulasSemanas();
                 
-                if(new TurmaDAO().cadastrarTurma(turma))
+                if(new TurmaDAO().cadastrarTurma(turma)) {
+                    req.setAttribute("turma", turma);
                     pagina = "WEB-INF/Paginas/secretaria/cadastraTurmaSucesso.jsp";
-                
+                }
             } catch (ParseException ex) {
                 Logger.getLogger(CadastrarTurma.class.getName()).log(Level.SEVERE, null, ex);
             }
