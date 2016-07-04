@@ -9,6 +9,7 @@ import com.guaruenglish.dao.ProfessorDAO;
 import com.guaruenglish.dao.TurmaDAO;
 import com.guaruenglish.model.Professor;
 import com.guaruenglish.model.Turma;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,9 +50,20 @@ public class TurmaService {
         return new TurmaDAO().buscaTurmas();
     }
     
-    
-    private Object TurmaDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean atualizar(int idTurma, Date dataInicio, Date dataFim, String periodo) {
+        if(dataFim.compareTo(dataInicio) <= 0) {
+            return false;
+        }
+        
+        TurmaDAO turmaDao = new TurmaDAO();
+        
+        Turma turma = turmaDao.buscaTurma(idTurma);
+        turma.setDataFim(dataFim);
+        turma.setDataInicio(dataInicio);
+        turma.setPeriodo(periodo);
+        
+        return turmaDao.alteraTurma(turma);
+ 
     }
 
     
