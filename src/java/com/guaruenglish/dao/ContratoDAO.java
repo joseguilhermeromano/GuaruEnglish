@@ -57,4 +57,27 @@ public class ContratoDAO {
         }
         return true;
     }
+    
+    public List<Contrato> buscaContratos() {
+        try {
+            Query query = entityManager.createQuery("FROM Contrato c");
+            List<Contrato> contratos = query.getResultList();
+            return contratos;
+        } catch(Exception e) {
+            return null;
+        }
+    }
+    
+    public Contrato buscaContrato(int id) {
+        try {
+            Query query = entityManager.createQuery
+        ("SELECT c FROM Contrato c WHERE c.id='"+id+"'");
+            Contrato contrato = (Contrato) query.getSingleResult();
+            return contrato;
+        } catch(Exception e) {
+            return null;
+        }
+    }
+    
+    
 }
