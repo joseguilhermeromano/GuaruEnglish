@@ -24,7 +24,7 @@ public class Login implements Tarefa {
         static {
             PAGINA_PERFIL.put("Aluno", "WEB-INF/Paginas/alunoHome.jsp");
             PAGINA_PERFIL.put("Secretaria", "WEB-INF/Paginas/secretariaHome.jsp");
-            PAGINA_PERFIL.put("Professor", "WEB-INF/Paginas/professor/verPlantao.jsp");
+            PAGINA_PERFIL.put("Professor", "WEB-INF/Paginas/professor/definirBoletim.jsp");
         }
     
     @Override
