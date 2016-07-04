@@ -21,16 +21,34 @@
                 <c:if test="${turma.modulo.nivel eq 1}">Básico</c:if>
                 <c:if test="${turma.modulo.nivel eq 2}">Médio</c:if>
                 <c:if test="${turma.modulo.nivel eq 3}">Avançado</c:if>
-                <br><b>Professor responsavel:</b> ${turma.professor.nome}
+                <br><b>Professor responsavel:</b> ${turma.professor.nome} 
+                <c:if test="${empty turma.professor}">
+                    <span class="text-warning">Você precisa definir um professor para essa turma</span>
+                </c:if>
                 <br><b>Data de Inicio:</b>  <fmt:formatDate pattern="dd/MM/yyyy" value="${turma.dataInicio}"/>
                 <br><b>Data de Conclusão:</b> <fmt:formatDate pattern="dd/MM/yyyy" value="${turma.dataFim}"/>
             </p>
             <br/>
-            <button class="btn btn-primary center-block">Alterar Turma</button>
+            <div class="btn-toolbar center-block">
+                <button type="submit" form="formAlterarTurma" class="btn btn-primary">
+                    Alterar Turma
+                </button>
+                <button class="btn btn-primary" type="submit" form="definirProfessor">
+                    Definir/Alterar Professor
+                </button>
+            </div>
             <form action="Executa" method="post" id="formAlterarTurma">
                 <input type="hidden" name="tarefa" value="TurmaServlet">
-                <input type="hidden" name="metodo" value="atualizaTurma"> 
+                <input type="hidden" name="metodo" value="editar"> 
+                <input type="hidden" name="idTurma" value="${turma.id}">
             </form>
+            
+            <form action="Executa" method="post" id="definirProfessor">
+                <input type="hidden" name="tarefa" value="TurmaServlet">
+                <input type="hidden" name="metodo" value="definirProfessorParaTurma">
+                <input type="hidden" name="idTurma" value="${turma.id}">
+            </form>
+            
             
         </div>
     </body>
