@@ -37,7 +37,7 @@
                 </c:forEach>
             </c:if>
         </table>
-        <form action="Executa" method="post">
+        <form action="Executa" method="post" id="definirPlantao">
             <input type="hidden" name="tarefa" value="PlantaoServlet">
             <input type="hidden" name="metodo" value="definirPlantao">
         </form>

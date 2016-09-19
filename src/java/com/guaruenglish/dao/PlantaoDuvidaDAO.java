@@ -22,10 +22,10 @@ import javax.persistence.RollbackException;
 public class PlantaoDuvidaDAO {
     EntityManager entityManager = new JPAutil().getEntityManager();
     //arrumar (id professor) comparação com data OK
-    public List<PlantaoDuvida> buscaPlantaoPorPeriodo(String dataInicial, String dataFinal,Usuario id ) {
+    public List<PlantaoDuvida> buscaPlantaoPorPeriodo(String dataInicial, String dataFinal,int id ) {
         try {
             Query query = entityManager.createQuery
-                ("SELECT u From PlantaoDuvida as u WHERE u.professor.id='"+id.getId()+"' and u.data BETWEEN date('"+dataInicial+"') and date('"+dataFinal+"')");
+                ("SELECT u From PlantaoDuvida as u WHERE u.professor.id='"+id+"' and u.data BETWEEN date('"+dataInicial+"') and date('"+dataFinal+"')");
             List<PlantaoDuvida> plantao = query.getResultList();
             return plantao;
         } catch(NoResultException e ){
@@ -45,7 +45,22 @@ public class PlantaoDuvidaDAO {
         }
     }
     
-     public boolean cadastrarPlantaoDuvida(PlantaoDuvida plantao) {
+    public boolean inserirPlantaoDuvida(PlantaoDuvida plantao) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(plantao);
+            entityManager.getTransaction().commit();
+            return true;
+        } catch(Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+            return false;
+        }
+    }
+    
+    
+    
+    public boolean cadastrarPlantaoDuvida(PlantaoDuvida plantao) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(plantao);

@@ -53,6 +53,9 @@ public class ProfessorService implements UsuarioService {
         return new ProfessorDAO().buscaProfessoresHorarioDisponivel();
     }
     
+    public Professor consultaProfessor(int id) {
+        return new ProfessorDAO().buscaProfessor(id);
+    }
     
     
     

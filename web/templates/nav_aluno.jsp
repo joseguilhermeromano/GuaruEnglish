@@ -4,14 +4,28 @@
     Author     : Luiz Felipe
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="<c:url value="Executa">
+                       <c:param name="tarefa" value="BoletimServlet"></c:param>
+                       <c:param name="metodo" value="consultaBoletinsAluno"></c:param>
+                   </c:url>">Boletins
+                </a>
+            </li>
+            <li>
+                <a href="<c:url value="Executa">
+                    <c:param name="tarefa" value="Logoff"></c:param>
+                    </c:url>">
+                    Logoff
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

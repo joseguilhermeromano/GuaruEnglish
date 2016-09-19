@@ -35,12 +35,18 @@ public class ConsultarPlantao implements Tarefa {
         HttpSession session = req.getSession();
         Usuario usr = (Usuario) session.getAttribute("usuarioLogado");
         Map map = new HashMap();
-        //map.put("Secretaria",new ProfessorDAO().buscaProfessor(id));
-        Usuario usuario = (Usuario)map.get(usr.getCargo());
+        
+        int id;
+        if(usr.getPerfilAcesso().equals("Secretaria")) {
+            id = Integer.parseInt(req.getParameter("idProfessor"));
+        } else {
+            id = usr.getId();
+        }
+        
         
         
         if(req.getParameter("dataInicial") != null | req.getParameter("dataFinal") != null) {     
-            plantao = new PlantaoDuvidaDAO().buscaPlantaoPorPeriodo(req.getParameter("dataInicial"), req.getParameter("dataFinal"),usr);
+            plantao = new PlantaoDuvidaDAO().buscaPlantaoPorPeriodo(req.getParameter("dataInicial"), req.getParameter("dataFinal"),id);
         }
         else {
             return "WEB-INF/Paginas/secretaria/error.jsp";   

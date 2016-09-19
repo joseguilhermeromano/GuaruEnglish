@@ -22,6 +22,8 @@ public class RouteAcessa implements Tarefa {
         PAGINA.put("cadastrarUsuario", "WEB-INF/Paginas/secretaria/cadastrarUsuario.jsp");
         PAGINA.put("Secretaria", "WEB-INF/Paginas/secretariaHome.jsp");
         PAGINA.put("atualizarModulo", "WEB-INF/Paginas/secretaria/curso/atualizarModulo.jsp");
+        PAGINA.put("verPlantao", "WEB-INF/Paginas/professor/verPlantao.jsp");
+        PAGINA.put("boletim", "WEB-INF/Paginas/professor/definirBoletim.jsp");
     }
 
     @Override
