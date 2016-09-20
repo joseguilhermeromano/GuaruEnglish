@@ -32,7 +32,6 @@ public class BoletimService extends HttpServlet {
    }
    
    public boolean alteraBoletim(Boletim boletim){
-       
        return new BoletimDAO().alteraBoletim(boletim);        
     }
    public List<Boletim> consultaBoletinsAluno(int idAluno){

@@ -30,12 +30,12 @@
                     </tr>
                     <c:forEach var="boletim" items="${boletim}">
                         <tr>
-                            <td>${boletim.id} </td>
+                            <td><label type="number" name="id" >${boletim.id}</label> </td>
                             <td><label type="text" name="matricula" >${boletim.aluno.matricula}</label>  </td>
                             <td><label type="text" name="nome" >${boletim.aluno.nome}</label>  </td>
-                            <td>${boletim.conceitoParcial} </td>
-                            <td>${boletim.conceitoFinal}</td>
-                            <td>${boletim.qtdFaltas}</td>
+                            <td><label type="number" name="parcial" >${boletim.conceitoParcial}</label>  </td>
+                            <td><label type="number" name="final" >${boletim.conceitoFinal}</label> </td>
+                            <td><label type="number" name="faltas" > ${boletim.qtdFaltas}</label> </td>
                         </tr>
                     </c:forEach>
                 </table> 
